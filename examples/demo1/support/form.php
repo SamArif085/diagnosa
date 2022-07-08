@@ -1,22 +1,7 @@
 <?php
+require "koneksi/koneksi.php";
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "diagnosa";
-
-$koneksi = mysqli_connect($host, $username, $password, $db);
-
-// $gejala_tb = mysqli_query($koneksi, "SELECT tb_penyakit_gejala.kd_gejala, tb_gejala.kd_gejala, tb_gejala.ket_gejala FROM tb_penyakit_gejala join tb_gejala on tb_gejala.kd_gejala = tb_penyakit_gejala.kd_gejala");
 $diagnosa = mysqli_query($koneksi, "SELECT * from tb_diagnosa");
-
-$auto = mysqli_query($koneksi, "SELECT MAX(id_pasien) AS maxcode FROM tb_pasien");
-$data = mysqli_fetch_array($auto);
-$code = $data['maxcode'];
-$urutan = (int)substr($code, 4, 4);
-$urutan++;
-$huruf = "DP-";
-$id_pasien = $huruf . sprintf("%04s", $urutan);
 
 if (isset($_POST['btn-save'])) {
     global $koneksi;
@@ -76,7 +61,7 @@ if (isset($_POST['btn-save'])) {
         <form method="POST">
         <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                <input type="text" class="form-control" id="id_pas" name="id_pas" value="<?php echo $id_pasien; ?>" readonly aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="id_pas" name="id_pas" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
@@ -91,10 +76,6 @@ if (isset($_POST['btn-save'])) {
                 </select>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">NO.DMK</label>
-                <input type="text" class="form-control" name="nodm" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
                 <input type="text" class="form-control" name="alamat" id="alamat">
             </div>
@@ -106,32 +87,6 @@ if (isset($_POST['btn-save'])) {
                 <label for="keluhan" class="form-label">Keluhan</label>
                 <input type="text" class="form-control" name="keluhan" id="keluhan">
             </div>
-            <!-- <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Gejala</label>
-                <select class="form-select" name="gejala[]" multiple aria-label="Default select example">
-                    <option selected>Pilih</option>
-                    <?php foreach ($gejala_tb as $g) : ?>
-                        <option value="<?= $g["kd_gejala"]; ?>"><?= $g["ket_gejala"]; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div> -->
-            <!-- <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Diagnosa</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Pilih</option>
-                    <?php foreach ($diagnosa as $g) : ?>
-                    <option value=""><?= $g["definisi"]; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div> -->
-            <!-- <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Penyebab</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Pilih</option>
-                    <option value="L">Laki - Laki</option>
-                    <option value="P">Perempuan</option>
-                </select>
-            </div> -->
             <button type="submit" name="btn-save" class="btn btn-primary">Submit</button>
         </form>
     </div>
