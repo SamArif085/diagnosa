@@ -41,10 +41,6 @@ if (isset($_POST['btn-save'])) {
     // }
     // $query = "INSERT INTO tb_detail (id_pas, kd_gejala) VALUES ('$id_pas', '$gel')";
     $query_run = mysqli_query($koneksi, $query);
-    // return mysqli_affected_rows($koneksi);
-
-    // var_dump($query_run);
-    // die;
     if ($query_run == 1) {
         echo "
           <script>
