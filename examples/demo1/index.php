@@ -350,8 +350,8 @@
 							<div class="collapse" id="dashboard">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="../demo1/index.html">
-											<span class="sub-item">Dashboard 1</span>
+										<a href="index.php?page=home">
+											<span class="sub-item">Dashboard</span>
 										</a>
 									</li>
 								</ul>
@@ -366,7 +366,7 @@
 							<div class="collapse" id="tables">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="tables/datatables.php">
+										<a href="index.php?page=data">
 											<span class="sub-item">Datatables</span>
 										</a>
 									</li>
@@ -387,69 +387,19 @@
 
                     switch ($page) {
                         case 'home':
-                            include "content/support/home.php";
+                            include "support/home.php";
                             break;
                         case 'data':
-                            include "content/tables/tabel-device.php";
-                            break;
-                        case 'about':
-                            include "content/support/about.php";
-                            break;
-                        case 'status':
-                            include "content/tables/table-status.php";
-                            break;
-                        case 'maps':
-                            include "content/maps.php";
+                            include "tables/datatables.php";
                             break;
                         default:
                             include "error_404.html";
                             break;
                     }
                 } else {
-                    include "content/support/home.php";
+                    include "support/home.php";
                 }
-
                 ?>
-				<div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-								<h5 class="text-white op-7 mb-2">Free Bootstrap 4 Admin Dashboard</h5>
-							</div>
-							<div class="ml-md-auto py-2 py-md-0">
-								<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-								<a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="page-inner mt--5">
-					<div class="row mt--2">
-						<div class="col-md-6">
-							<div class="card full-height">
-								<div class="card-body">
-									<div class="card-title">Overall statistics</div>
-									<div class="card-category">Daily information about statistics in system</div>
-									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-1"></div>
-											<h6 class="fw-bold mt-3 mb-0">New Users</h6>
-										</div>
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-2"></div>
-											<h6 class="fw-bold mt-3 mb-0">Sales</h6>
-										</div>
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-3"></div>
-											<h6 class="fw-bold mt-3 mb-0">Subscribers</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
