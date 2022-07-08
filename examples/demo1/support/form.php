@@ -8,33 +8,24 @@ if (isset($_POST['btn-save'])) {
     $id_pas = htmlspecialchars($_POST['id_pas']);
     $nama = htmlspecialchars($_POST['nama']);
     $jk = htmlspecialchars($_POST['jk']);
-    $nodm = htmlspecialchars($_POST['nodm']);
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
 
-    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, no_dmk, dx_med, keluhan) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$nodm', '$dx', '$keluhan')";
-    // var_dump($query);
-    // die;
-    // foreach ($gel as $data) {
-    //     // echo $data;
-    //     $query = "INSERT INTO tb_detail (id_pas, kd_gejala) VALUES ('$id_pas', '$data')";
-    //     $query_run = mysqli_query($koneksi, $query);
-    // }
-    // $query = "INSERT INTO tb_detail (id_pas, kd_gejala) VALUES ('$id_pas', '$gel')";
+    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, dx_med, keluhan) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$dx', '$keluhan')";
     $query_run = mysqli_query($koneksi, $query);
     if ($query_run == 1) {
         echo "
           <script>
           alert('berhasil tambah !');
-              document.location.href = 'index.php';
+              document.location.href = 'index.php?page=data';
           </script>
           ";
     } else {
         echo "
           <script>
           alert('data tidak berhasil tambah !');
-              document.location.href = 'index.php';
+              document.location.href = 'index.php?page=data';
           </script>
           ";
     }

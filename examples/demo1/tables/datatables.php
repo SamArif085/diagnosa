@@ -113,8 +113,7 @@ if (isset($_POST['gejalatambah'])) {
                                                 //     }
                                                 // }
                                             ?>
-                                                <td><a class="btn btn-primary" data-toggle="modal" data-target="#detail<?= $datarow["no_dmk_pasien"]; ?>">
-                                                        <?php echo $datarow['no_dmk_pasien']; ?></a></td>
+                                                <td><?php echo $datarow['no_dmk_pasien']; ?></td>
                                                 <td><?php echo $datarow['nama_pasien']; ?></td>
                                                 <td><?php echo $datarow['alamat_pasien']; ?></td>
                                                 <td><?php echo $datarow['jen_kel_pasien']; ?></td>
@@ -207,6 +206,12 @@ if (isset($_POST['gejalatambah'])) {
                                                                     $idpasein = $datarow["no_dmk_pasien"];
                                                                     $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
                                                                     $dat = mysqli_query($koneksi, $abc);
+                                                                    $count1 = mysqli_num_rows($dat);
+                                                                    if ($count1 > 3) {
+                                                                        $coba = 'mantap';
+                                                                    } else {
+                                                                        $coba = 'bla';
+                                                                    }
                                                                     ?>">
                                                                     <label for="exampleInputEmail1" class="form-group">Major</label>
                                                                     <div class="d-flex">
@@ -219,30 +224,28 @@ if (isset($_POST['gejalatambah'])) {
                                                                         </div>
                                                                         <div class="form-group col-4">
                                                                             <label for="exampleInputEmail1" class="form-control">Subjektif</label>
-                                                                            <?php foreach ($gejala_tb1 as $g) : ?>
-                                                                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                                <?= $g["ket_gejala"]; ?><br />
-                                                                            <?php endforeach; ?>
+                                                                            <input type="checkbox" " />
+                                                                            <?= $coba; ?><br />
                                                                         </div>
                                                                     </div>
-                                                                    <label for="exampleInputEmail1" class="form-group">Minor</label>
-                                                                    <div class="d-flex">
-                                                                        <div class="mb-3 form-group col-8">
-                                                                            <label for="exampleInputEmail1" class="form-control">Objektif</label>
-                                                                            <?php foreach ($gejala_tb2 as $g) : ?>
-                                                                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                                <?= $g["ket_gejala"]; ?><br />
-                                                                            <?php endforeach; ?>
-                                                                        </div>
-                                                                        <div class="form-group col-4">
-                                                                            <label for="exampleInputEmail1" class="form-control">Subjektif</label>
-                                                                            <?php foreach ($gejala_tb3 as $g) : ?>
-                                                                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                                <?= $g["ket_gejala"]; ?><br />
-                                                                            <?php endforeach; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
+                                                                    <label for=" exampleInputEmail1" class="form-group">Minor</label>
+                                                                            <div class="d-flex">
+                                                                                <div class="mb-3 form-group col-8">
+                                                                                    <label for="exampleInputEmail1" class="form-control">Objektif</label>
+                                                                                    <?php foreach ($gejala_tb2 as $g) : ?>
+                                                                                        <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                                                                        <?= $g["ket_gejala"]; ?><br />
+                                                                                    <?php endforeach; ?>
+                                                                                </div>
+                                                                                <div class="form-group col-4">
+                                                                                    <label for="exampleInputEmail1" class="form-control">Subjektif</label>
+                                                                                    <?php foreach ($gejala_tb3 as $g) : ?>
+                                                                                        <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                                                                        <?= $g["ket_gejala"]; ?><br />
+                                                                                    <?php endforeach; ?>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
                                                                 </form>
                                                             </div>
                                                         </div>
