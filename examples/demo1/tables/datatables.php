@@ -104,14 +104,6 @@ if (isset($_POST['gejalatambah'])) {
                                                         }
                                                     }
                                                 }
-                                                // foreach ($dia as $diagn) {
-                                                //     $ad = $diagn['kd_diagnosa'];
-                                                //     foreach($geja as $gejal){
-                                                //         if($gejal['kd_diagnosa'] == $ad){
-                                                //             $diagnosa = $gejal['definisi'];
-                                                //         }
-                                                //     }
-                                                // }
                                             ?>
                                                 <td><?php echo $datarow['no_dmk_pasien']; ?></td>
                                                 <td><?php echo $datarow['nama_pasien']; ?></td>
@@ -199,18 +191,16 @@ if (isset($_POST['gejalatambah'])) {
                                                                         Pasien</label>
                                                                     <input type="text" name="id_pasien" class="form-control" readonly required value="<?= $datarow["no_dmk_pasien"]; ?>">
                                                                     <br>
-                                                                    <label for="exampleInputEmail1" class="form-label">Nomor
-                                                                        Pasien</label>
-                                                                    <input type="text-area" name="id_pasien" class="form-control" readonly required value="
                                                                     <?php
                                                                     $idpasein = $datarow["no_dmk_pasien"];
+                                                                    $kdgej = '';
                                                                     $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
                                                                     $dat = mysqli_query($koneksi, $abc);
                                                                     $count1 = mysqli_num_rows($dat);
-                                                                    if ($count1 > 3) {
+                                                                    if ($count1 == 'diare') {
                                                                         $coba = 'mantap';
                                                                     } else {
-                                                                        $coba = 'bla';
+                                                                        $coba = 'bersihan';
                                                                     }
                                                                     ?>">
                                                                     <label for="exampleInputEmail1" class="form-group">Major</label>
@@ -223,29 +213,20 @@ if (isset($_POST['gejalatambah'])) {
                                                                             <?php endforeach; ?>
                                                                         </div>
                                                                         <div class="form-group col-4">
-                                                                            <label for="exampleInputEmail1" class="form-control">Subjektif</label>
-                                                                            <input type="checkbox" " />
-                                                                            <?= $coba; ?><br />
+                                                                            <label for="exampleInputEmail1" class="form-control">Diagnosa</label>
+                                                                            <input type="checkbox" /><?= $coba; ?><br />
                                                                         </div>
                                                                     </div>
-                                                                    <label for=" exampleInputEmail1" class="form-group">Minor</label>
-                                                                            <div class="d-flex">
-                                                                                <div class="mb-3 form-group col-8">
-                                                                                    <label for="exampleInputEmail1" class="form-control">Objektif</label>
-                                                                                    <?php foreach ($gejala_tb2 as $g) : ?>
-                                                                                        <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                                        <?= $g["ket_gejala"]; ?><br />
-                                                                                    <?php endforeach; ?>
-                                                                                </div>
-                                                                                <div class="form-group col-4">
-                                                                                    <label for="exampleInputEmail1" class="form-control">Subjektif</label>
-                                                                                    <?php foreach ($gejala_tb3 as $g) : ?>
-                                                                                        <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                                        <?= $g["ket_gejala"]; ?><br />
-                                                                                    <?php endforeach; ?>
-                                                                                </div>
-                                                                            </div>
-                                                                            <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
+                                                                    <label for=" exampleInputEmail1" class="form-group">Penyebab</label>
+                                                                    <div class="d-flex">
+                                                                        <div class="mb-3 form-group col-8">
+                                                                            <?php foreach ($gejala_tb2 as $g) : ?>
+                                                                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                                                                <?= $g["ket_gejala"]; ?><br />
+                                                                            <?php endforeach; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
                                                                 </form>
                                                             </div>
                                                         </div>
