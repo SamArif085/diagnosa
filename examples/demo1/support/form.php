@@ -59,12 +59,7 @@ if (isset($_POST['btn-save'])) {
         <form method="POST">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-<<<<<<< HEAD
                 <input type="text" class="form-control" id="id_pas" name="id_pas" aria-describedby="emailHelp">
-=======
-                <input type="text" class="form-control" id="id_pas" name="id_pas" value="<?php echo $id_pasien; ?>"
-                    readonly aria-describedby="emailHelp">
->>>>>>> 8fe567488b8789c724e29a79b5cd1fe188d29f6f
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
