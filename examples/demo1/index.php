@@ -11,9 +11,14 @@
 	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
 		WebFont.load({
-			google: { "families": ["Lato:300,400,700,900"] },
-			custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css'] },
-			active: function () {
+			google: {
+				"families": ["Lato:300,400,700,900"]
+			},
+			custom: {
+				"families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
+				urls: ['../assets/css/fonts.min.css']
+			},
+			active: function() {
 				sessionStorage.fonts = true;
 			}
 		});
@@ -36,8 +41,7 @@
 				<a href="index.html" class="logo">
 					<img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
 				</a>
-				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
-					data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
 						<i class="icon-menu"></i>
 					</span>
@@ -69,14 +73,12 @@
 					</div>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 						<li class="nav-item toggle-nav-search hidden-caret">
-							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
-								aria-expanded="false" aria-controls="search-nav">
+							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
 								<i class="fa fa-search"></i>
 							</a>
 						</li>
 						<li class="nav-item dropdown hidden-caret">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"
-								aria-expanded="false">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
 									<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
 								</div>
@@ -85,12 +87,10 @@
 								<div class="dropdown-user-scroll scrollbar-outer">
 									<li>
 										<div class="user-box">
-											<div class="avatar-lg"><img src="../assets/img/profile.jpg"
-													alt="image profile" class="avatar-img rounded"></div>
+											<div class="avatar-lg"><img src="../assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4>Hizrian</h4>
-												<p class="text-muted">hello@example.com</p><a href="profile.html"
-													class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+												<p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 											</div>
 										</div>
 									</li>
@@ -182,6 +182,11 @@
 											<span class="sub-item">Datatables</span>
 										</a>
 									</li>
+									<li>
+										<a href="index.php?page=form">
+											<span class="sub-item">Tambah Pasien</span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</li>
@@ -194,24 +199,27 @@
 		<div class="main-panel">
 			<div class="content">
 				<?php
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
+				if (isset($_GET['page'])) {
+					$page = $_GET['page'];
 
-                    switch ($page) {
-                        case 'home':
-                            include "support/home.php";
-                            break;
-                        case 'data':
-                            include "tables/datatables.php";
-                            break;
-                        default:
-                            include "error_404.html";
-                            break;
-                    }
-                } else {
-                    include "support/home.php";
-                }
-                ?>
+					switch ($page) {
+						case 'home':
+							include "support/home.php";
+							break;
+						case 'data':
+							include "tables/datatables.php";
+							break;
+						case 'form':
+							include "support/form.php";
+							break;
+						default:
+							include "error_404.html";
+							break;
+					}
+				} else {
+					include "support/home.php";
+				}
+				?>
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
@@ -235,8 +243,7 @@
 						</ul>
 					</nav>
 					<div class="copyright ml-auto">
-						2018, made with <i class="fa fa-heart heart text-danger"></i> by <a
-							href="https://www.themekita.com">ThemeKita</a>
+						2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
 					</div>
 				</div>
 			</footer>
@@ -450,7 +457,7 @@
 		});
 	</script>
 	<script>
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$('#basic-datatables').DataTable({});
 		});
 	</script>
