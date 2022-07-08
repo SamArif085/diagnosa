@@ -12,11 +12,8 @@ if (isset($_POST['btn-save'])) {
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
-    // $gel = $_POST['gejala'];
-    // $id_pas = 1;
 
-
-    $query = "INSERT INTO tb_pasien (id_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, no_dmk, dx_med, keluhan) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$nodm', '$dx', '$keluhan')";
+    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, no_dmk, dx_med, keluhan) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$nodm', '$dx', '$keluhan')";
     // var_dump($query);
     // die;
     // foreach ($gel as $data) {
