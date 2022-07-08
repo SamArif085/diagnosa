@@ -20,20 +20,6 @@ $dia = mysqli_query($koneksi, $diag);
 
 $gej = 'SELECT * FROM tb_gejala';
 $geja = mysqli_query($koneksi, $gej);
-// SELECT COUNT(kd_gejala) FROM tb_detail JOIN tb_pasien ON tb_detail.id_pas = tb_pasien.id_pasien WHERE id_pas = 'DP-0001'
-
-// foreach ($det as $datarow) {
-//     $datas = $datarow['id_pasien'];
-//     foreach ($data as $dettaill) {
-//         if ($dettaill == $datas) {
-//             $coba = 'Hanya Coba';
-//             $abc = "SELECT COUNT(tb_detail.kd_gejala), tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$datas'";
-//             $data = mysqli_query($koneksi, $abc);
-//         }
-//     }
-// }
-$abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = 'DP-0001'";
-$dat = mysqli_query($koneksi, $abc);
 
 if (isset($_POST['gejalatambah'])) {
     $gel = $_POST['gejala'];
@@ -103,17 +89,19 @@ if (isset($_POST['gejalatambah'])) {
                                             foreach ($det as $datarow) :
                                                 $datas = $datarow['no_dmk_pasien'];
                                                 foreach ($detail as $dettaill) {
+                                                    // $idpasein = $dettaill['id_pasien'];
+                                                    // $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
+                                                    // $dat = mysqli_query($koneksi, $abc);
                                                     if ($dettaill['id_pasien'] == $datas) {
                                                         $kdgejala = $dettaill['kd_gejala'];
                                                     }
-                                                    foreach($geja as $gejal){
+                                                    foreach ($geja as $gejal) {
                                                         $kd_gejal = $gejal['kd_diagnosa'];
-                                                        foreach($dia as $diagno){
-                                                            if($diagno['kd_diagnosa'] == $kd_gejal){
+                                                        foreach ($dia as $diagno) {
+                                                            if ($diagno['kd_diagnosa'] == $kd_gejal) {
                                                                 $diagnosa = $diagno['definisi'];
                                                             }
                                                         }
-
                                                     }
                                                 }
                                                 // foreach ($dia as $diagn) {
@@ -214,7 +202,12 @@ if (isset($_POST['gejalatambah'])) {
                                                                     <br>
                                                                     <label for="exampleInputEmail1" class="form-label">Nomor
                                                                         Pasien</label>
-                                                                    <input type="text-area" name="id_pasien" class="form-control" readonly required value="<?php echo $diagnosa ?>">
+                                                                    <input type="text-area" name="id_pasien" class="form-control" readonly required value="
+                                                                    <?php
+                                                                    $idpasein = $datarow["no_dmk_pasien"];
+                                                                    $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
+                                                                    $dat = mysqli_query($koneksi, $abc);
+                                                                    ?>">
                                                                     <label for="exampleInputEmail1" class="form-group">Major</label>
                                                                     <div class="d-flex">
                                                                         <div class="mb-3 form-group col-8">
