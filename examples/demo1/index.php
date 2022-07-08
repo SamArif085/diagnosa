@@ -354,11 +354,6 @@
 											<span class="sub-item">Dashboard 1</span>
 										</a>
 									</li>
-									<li>
-										<a href="../demo2/index.html">
-											<span class="sub-item">Dashboard 2</span>
-										</a>
-									</li>
 								</ul>
 							</div>
 						</li>
@@ -546,62 +541,6 @@
 								<span class="badge badge-success">4</span>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="#submenu">
-								<i class="fas fa-bars"></i>
-								<p>Menu Levels</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="submenu">
-								<ul class="nav nav-collapse">
-									<li>
-										<a data-toggle="collapse" href="#subnav1">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav1">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<a data-toggle="collapse" href="#subnav2">
-											<span class="sub-item">Level 1</span>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="subnav2">
-											<ul class="nav nav-collapse subnav">
-												<li>
-													<a href="#">
-														<span class="sub-item">Level 2</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</li>
-									<li>
-										<a href="#">
-											<span class="sub-item">Level 1</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="mx-4 mt-2">
-							<a href="http://themekita.com/atlantis-bootstrap-dashboard.html"
-								class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i
-										class="fa fa-heart"></i> </span>Buy Pro</a>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -610,6 +549,35 @@
 
 		<div class="main-panel">
 			<div class="content">
+				<?php
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+
+                    switch ($page) {
+                        case 'home':
+                            include "content/support/home.php";
+                            break;
+                        case 'data':
+                            include "content/tables/tabel-device.php";
+                            break;
+                        case 'about':
+                            include "content/support/about.php";
+                            break;
+                        case 'status':
+                            include "content/tables/table-status.php";
+                            break;
+                        case 'maps':
+                            include "content/maps.php";
+                            break;
+                        default:
+                            include "error_404.html";
+                            break;
+                    }
+                } else {
+                    include "content/support/home.php";
+                }
+
+                ?>
 				<div class="panel-header bg-primary-gradient">
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
