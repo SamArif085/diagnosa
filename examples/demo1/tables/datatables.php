@@ -22,25 +22,25 @@ $det = mysqli_query($koneksi, $pasien);
 
 if (isset($_POST['gejalatambah'])) {
     $gel = $_POST['gejala'];
-    $id_pas = $_POST['id_pas'];
+    $id_pasien = $_POST['id_pasien'];
 
     foreach ($gel as $data) {
         // echo $data;
-        $query = "INSERT INTO tb_detail (id_pas, kd_gejala) VALUES ('$id_pas', '$data')";
+        $query = "INSERT INTO tb_detail (id_pasien, kd_gejala) VALUES ('$id_pasien', '$data')";
         $query_run = mysqli_query($koneksi, $query);
 
         if ($query_run == 1) {
             echo "
 			  <script>
 			  alert('berhasil tambah !');
-				  document.location.href = 'datatables.php';
+				  document.location.href = 'index.php?page=data';
 			  </script>
 			  ";
         } else {
             echo "
 			  <script>
 			  alert('data tidak berhasil tambah !');
-				  document.location.href = 'datatables.php';
+				  document.location.href = 'index.php?page=data';
 			  </script>
 			  ";
         }
@@ -117,7 +117,7 @@ if (isset($_POST['gejalatambah'])) {
                                                             <form method="post">
                                                                 <label for="exampleInputEmail1" class="form-label">Nomor
                                                                     Pasien</label>
-                                                                <input type="text" name="id_pas" class="form-control"
+                                                                <input type="text" name="id_pasien" class="form-control"
                                                                     readonly required
                                                                     value="<?= $datarow["no_dmk_pasien"]; ?>">
                                                                 <br>
@@ -129,7 +129,7 @@ if (isset($_POST['gejalatambah'])) {
                                                                             class="form-control">Objektif</label>
                                                                         <?php foreach ($gejala_tb as $g) : ?>
                                                                         <input type="checkbox" name="gejala[]"
-                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                            value="<?= $g["kd_gejala"]; ?>" />
                                                                         <?= $g["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
@@ -138,7 +138,7 @@ if (isset($_POST['gejalatambah'])) {
                                                                             class="form-control">Subjektif</label>
                                                                         <?php foreach ($gejala_tb1 as $g) : ?>
                                                                         <input type="checkbox" name="gejala[]"
-                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                            value="<?= $g["kd_gejala"]; ?>" />
                                                                         <?= $g["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
@@ -151,7 +151,7 @@ if (isset($_POST['gejalatambah'])) {
                                                                             class="form-control">Objektif</label>
                                                                         <?php foreach ($gejala_tb2 as $g) : ?>
                                                                         <input type="checkbox" name="gejala[]"
-                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                            value="<?= $g["kd_gejala"]; ?>" />
                                                                         <?= $g["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
@@ -160,7 +160,7 @@ if (isset($_POST['gejalatambah'])) {
                                                                             class="form-control">Subjektif</label>
                                                                         <?php foreach ($gejala_tb3 as $g) : ?>
                                                                         <input type="checkbox" name="gejala[]"
-                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                            value="<?= $g["kd_gejala"]; ?>" />
                                                                         <?= $g["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
