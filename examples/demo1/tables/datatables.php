@@ -90,79 +90,99 @@ if (isset($_POST['gejalatambah'])) {
                                             <!-- <?php $i = 1 ?> -->
 
                                             <?php foreach ($det as $datarow) : ?>
-                                                <td><a class="btn btn-primary" data-toggle="modal" data-target="#detail<?= $datarow["id_pasien"]; ?>">
-                                                        <?php echo $datarow['id_pasien']; ?></a></td>
-                                                <td><?php echo $datarow['nama_pasien']; ?></td>
-                                                <td><?php echo $datarow['alamat_pasien']; ?></td>
-                                                <td><?php echo $datarow['jen_kel_pasien']; ?></td>
-                                                <td><?php echo $datarow['no_dmk']; ?></td>
-                                                <td><?php echo $datarow['dx_med']; ?></td>
-                                                <td><?php echo $datarow['keluhan']; ?></td>
-                                                <td><a class="mb-2" data-toggle="modal" data-target="#tambahgejala<?= $datarow["id_pasien"]; ?>"><i class="btn btn-primary"> Tambah Gejala</i></a></td>
-                                                <div class="modal fade" id="tambahgejala<?= $datarow["id_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <!-- modal header -->
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Isi
-                                                                    Gejala</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <!-- <span aria-hidden="true">×</span> -->
-                                                                </button>
-                                                            </div>
-                                                            <!-- modal body -->
-                                                            <div class="modal-body">
-                                                                <form method="post">
-                                                                    <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                                                                    <input type="text" name="id_pas" class="form-control" readonly required value="<?= $datarow["id_pasien"]; ?>">
-                                                                    <br>
-                                                                    <div class="mb-3">
-                                                                        <label for="exampleInputEmail1" class="form-control">Gejala</label>
-                                                                        <?php foreach ($gejala_tb as $g) : ?>
-                                                                            <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                            <?= $g["ket_gejala"]; ?><br />
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
-                                                                </form>
-                                                            </div>
+                                            <td><a class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#detail<?= $datarow["id_pasien"]; ?>">
+                                                    <?php echo $datarow['id_pasien']; ?></a></td>
+                                            <td><?php echo $datarow['nama_pasien']; ?></td>
+                                            <td><?php echo $datarow['alamat_pasien']; ?></td>
+                                            <td><?php echo $datarow['jen_kel_pasien']; ?></td>
+                                            <td><?php echo $datarow['no_dmk']; ?></td>
+                                            <td><?php echo $datarow['dx_med']; ?></td>
+                                            <td><?php echo $datarow['keluhan']; ?></td>
+                                            <td><a class="mb-2" data-toggle="modal"
+                                                    data-target="#tambahgejala<?= $datarow["id_pasien"]; ?>"><i
+                                                        class="btn btn-primary"> Tambah Gejala</i></a></td>
+                                            <div class="modal fade" id="tambahgejala<?= $datarow["id_pasien"]; ?>"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <!-- modal header -->
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Isi
+                                                                Gejala</h5>
+                                                            <button class="close" type="button" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <!-- <span aria-hidden="true">×</span> -->
+                                                            </button>
+                                                        </div>
+                                                        <!-- modal body -->
+                                                        <div class="modal-body">
+                                                            <form method="post">
+                                                                <label for="exampleInputEmail1" class="form-label">Nomor
+                                                                    Pasien</label>
+                                                                <input type="text" name="id_pas" class="form-control"
+                                                                    readonly required
+                                                                    value="<?= $datarow["id_pasien"]; ?>">
+                                                                <br>
+                                                                <div class="mb-3">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-control">Gejala</label>
+                                                                    <?php foreach ($gejala_tb as $g) : ?>
+                                                                    <input type="checkbox" name="gejala[]"
+                                                                        value="<?= $g["kd_gejala"]; ?>" />
+                                                                    <?= $g["ket_gejala"]; ?><br />
+                                                                    <?php endforeach; ?>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-success"
+                                                                    name="gejalatambah">UPDATE</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
 
-                                                <div class="modal fade" id="detail<?= $datarow["id_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <!-- modal header -->
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Isi
-                                                                    Gejala</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <!-- <span aria-hidden="true">×</span> -->
-                                                                </button>
-                                                            </div>
-                                                            <!-- modal body -->
-                                                            <div class="modal-body">
-                                                                <form method="post">
-                                                                    <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                                                                    <input type="text" name="id_pas" class="form-control" readonly required value="<?= $datas; ?>">
-                                                                    <br>
-                                                                    <div class="mb-3">
-                                                                        <label for="exampleInputEmail1" class="form-control">Gejala</label>
-                                                                        <?php foreach ($gejala_tb as $g) : ?>
-                                                                            <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                            <?= $g["ket_gejala"]; ?><br />
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
-                                                                </form>
-                                                            </div>
+                                            <div class="modal fade" id="detail<?= $datarow["id_pasien"]; ?>"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <!-- modal header -->
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Isi
+                                                                Gejala</h5>
+                                                            <button class="close" type="button" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <!-- <span aria-hidden="true">×</span> -->
+                                                            </button>
+                                                        </div>
+                                                        <!-- modal body -->
+                                                        <div class="modal-body">
+                                                            <form method="post">
+                                                                <label for="exampleInputEmail1" class="form-label">Nomor
+                                                                    Pasien</label>
+                                                                <input type="text" name="id_pas" class="form-control"
+                                                                    readonly required value="<?= $datas; ?>">
+                                                                <br>
+                                                                <div class="mb-3">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-control">Gejala</label>
+                                                                    <?php foreach ($gejala_tb as $g) : ?>
+                                                                    <input type="checkbox" name="gejala[]"
+                                                                        value="<?= $g["kd_gejala"]; ?>" />
+                                                                    <?= $g["ket_gejala"]; ?><br />
+                                                                    <?php endforeach; ?>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-success"
+                                                                    name="gejalatambah">UPDATE</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </tr>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -191,8 +211,8 @@ if (isset($_POST['gejalatambah'])) {
     <!-- Atlantis DEMO methods, don't include it in your project! -->
     <script src="../../assets/js/setting-demo2.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable({});
-        });
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({});
+    });
     </script>
 </body>
