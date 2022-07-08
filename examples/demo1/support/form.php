@@ -7,8 +7,8 @@ $db = "diagnosa";
 
 $koneksi = mysqli_connect($host, $username, $password, $db);
 
-$gejala_tb = mysqli_query($koneksi, "SELECT tb_penyakit_gejala.kd_gejala, tb_gejala.kd_gejala, tb_gejala.ket_gejala FROM tb_penyakit_gejala join tb_gejala on tb_gejala.kd_gejala = tb_penyakit_gejala.kd_gejala");
-$diagnosa = mysqli_query($koneksi, "SELECT * from tb_penyakit");
+// $gejala_tb = mysqli_query($koneksi, "SELECT tb_penyakit_gejala.kd_gejala, tb_gejala.kd_gejala, tb_gejala.ket_gejala FROM tb_penyakit_gejala join tb_gejala on tb_gejala.kd_gejala = tb_penyakit_gejala.kd_gejala");
+$diagnosa = mysqli_query($koneksi, "SELECT * from tb_diagnosa");
 
 $auto = mysqli_query($koneksi, "SELECT MAX(id_pasien) AS maxcode FROM tb_pasien");
 $data = mysqli_fetch_array($auto);
@@ -69,7 +69,8 @@ if (isset($_POST['btn-save'])) {
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -78,9 +79,10 @@ if (isset($_POST['btn-save'])) {
 <body>
     <div class="container">
         <form method="POST">
-        <div class="mb-3">
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                <input type="text" class="form-control" id="id_pas" name="id_pas" value="<?php echo $id_pasien; ?>" readonly aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="id_pas" name="id_pas" value="<?php echo $id_pasien; ?>"
+                    readonly aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
