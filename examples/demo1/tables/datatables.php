@@ -4,7 +4,11 @@ require "koneksi/koneksi.php";
 // $detail = ('select tb_detail.id_pas, tb_detail.kd_gejala, tb_detail.waktu, tb_pasien.id_pasien, tb_pasien.nama_pasien, tb_pasien.alamat_pasien, tb_pasien.jen_kel_pasien, tb_pasien.no_dmk, tb_pasien.dx_med, tb_penyakit_gejala.kd_gejala, tb_penyakit_gejala.kd_penyakit, tb_penyakit_gejala.kd_jen_gejala, tb_jenis_gejala.kd_jen_gejala, tb_jenis_gejala.ket_jen_gejala, tb_jenis_penyebab.kd_jen_penyebab, tb_jenis_penyebab.ket_jen_penyebab, tb_penyakit_penyebab.kd_penyakit, tb_penyakit_penyebab.kd_penyebab, tb_penyakit_penyebabkd_jen_penyebab, tb_penyakit.kd_penyakit, tb_penyakit.definisi from tb.pasien join tb_detail on tb_pasien.id_pasien=tb_detail.id_pas');
 
 
-$gejala_tb = mysqli_query($koneksi, "SELECT kd_gejala, ket_gejala FROM tb_gejala");
+$gejala_tb = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'OMY-002'");
+$gejala_tb1 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'SMY-001'");
+$gejala_tb2 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'OMN-004'");
+$gejala_tb3 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'SMN-003'");
+
 
 $pasien = ('SELECT * FROM tb_pasien;');
 
@@ -83,80 +87,134 @@ if (isset($_POST['gejalatambah'])) {
                                             <!-- <?php $i = 1 ?> -->
 
                                             <?php foreach ($det as $datarow) : ?>
-                                                <td><a class="btn btn-primary" data-toggle="modal" data-target="#detail<?= $datarow["no_dmk_pasien"]; ?>">
-                                                        <?php echo $datarow['no_dmk_pasien']; ?></a></td>
-                                                <td><?php echo $datarow['nama_pasien']; ?></td>
-                                                <td><?php echo $datarow['alamat_pasien']; ?></td>
-                                                <td><?php echo $datarow['jen_kel_pasien']; ?></td>
-                                                <td><?php echo $datarow['dx_med']; ?></td>
-                                                <td><?php echo $datarow['keluhan']; ?></td>
-                                                <td><a class="mb-2" data-toggle="modal" data-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Tambah Gejala</i></a></td>
-                                                <div class="modal fade" id="tambahgejala<?= $datarow["no_dmk_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <!-- modal header -->
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Isi
-                                                                    Gejala</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <!-- <span aria-hidden="true">×</span> -->
-                                                                </button>
-                                                            </div>
-                                                            <!-- modal body -->
-                                                            <div class="modal-body">
-                                                                <form method="post">
-                                                                    <label for="exampleInputEmail1" class="form-label">Nomor
-                                                                        Pasien</label>
-                                                                    <input type="text" name="id_pas" class="form-control" readonly required value="<?= $datarow["no_dmk_pasien"]; ?>">
-                                                                    <br>
-                                                                    <div class="mb-3">
-                                                                        <label for="exampleInputEmail1" class="form-control">Gejala</label>
+                                            <td><a class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#detail<?= $datarow["no_dmk_pasien"]; ?>">
+                                                    <?php echo $datarow['no_dmk_pasien']; ?></a></td>
+                                            <td><?php echo $datarow['nama_pasien']; ?></td>
+                                            <td><?php echo $datarow['alamat_pasien']; ?></td>
+                                            <td><?php echo $datarow['jen_kel_pasien']; ?></td>
+                                            <td><?php echo $datarow['dx_med']; ?></td>
+                                            <td><?php echo $datarow['keluhan']; ?></td>
+                                            <td><a class="mb-2" data-toggle="modal"
+                                                    data-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"><i
+                                                        class="btn btn-primary"> Tambah Gejala</i></a></td>
+                                            <div class="modal fade" id="tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <!-- modal header -->
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Isi
+                                                                Gejala</h5>
+                                                            <button class="close" type="button" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <!-- <span aria-hidden="true">×</span> -->
+                                                            </button>
+                                                        </div>
+                                                        <!-- modal body -->
+                                                        <div class="modal-body">
+                                                            <form method="post">
+                                                                <label for="exampleInputEmail1" class="form-label">Nomor
+                                                                    Pasien</label>
+                                                                <input type="text" name="id_pas" class="form-control"
+                                                                    readonly required
+                                                                    value="<?= $datarow["no_dmk_pasien"]; ?>">
+                                                                <br>
+                                                                <label for="exampleInputEmail1"
+                                                                    class="form-group">Major</label>
+                                                                <div class="d-flex">
+                                                                    <div class="mb-3 form-group col-8">
+                                                                        <label for="exampleInputEmail1"
+                                                                            class="form-control">Objektif</label>
                                                                         <?php foreach ($gejala_tb as $g) : ?>
-                                                                            <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                            <?= $g["ket_gejala"]; ?><br />
+                                                                        <input type="checkbox" name="gejala[]"
+                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                        <?= $g["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
-                                                                    <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
-                                                                </form>
-                                                            </div>
+                                                                    <div class="form-group col-4">
+                                                                        <label for="exampleInputEmail1"
+                                                                            class="form-control">Subjektif</label>
+                                                                        <?php foreach ($gejala_tb1 as $g) : ?>
+                                                                        <input type="checkbox" name="gejala[]"
+                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                        <?= $g["ket_gejala"]; ?><br />
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <label for="exampleInputEmail1"
+                                                                    class="form-group">Minor</label>
+                                                                <div class="d-flex">
+                                                                    <div class="mb-3 form-group col-8">
+                                                                        <label for="exampleInputEmail1"
+                                                                            class="form-control">Objektif</label>
+                                                                        <?php foreach ($gejala_tb2 as $g) : ?>
+                                                                        <input type="checkbox" name="gejala[]"
+                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                        <?= $g["ket_gejala"]; ?><br />
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                    <div class="form-group col-4">
+                                                                        <label for="exampleInputEmail1"
+                                                                            class="form-control">Subjektif</label>
+                                                                        <?php foreach ($gejala_tb3 as $g) : ?>
+                                                                        <input type="checkbox" name="gejala[]"
+                                                                            value="<?= $g["kd_diagnosa"]; ?>" />
+                                                                        <?= $g["ket_gejala"]; ?><br />
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-success"
+                                                                    name="gejalatambah">UPDATE</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
 
-                                                <div class="modal fade" id="detail<?= $datarow["no_dmk_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <!-- modal header -->
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Isi
-                                                                    Gejala</h5>
-                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                    <!-- <span aria-hidden="true">×</span> -->
-                                                                </button>
-                                                            </div>
-                                                            <!-- modal body -->
-                                                            <div class="modal-body">
-                                                                <form method="post">
-                                                                    <label for="exampleInputEmail1" class="form-label">Nomor
-                                                                        Pasien</label>
-                                                                    <input type="text" name="id_pas" class="form-control" readonly required value="<?= $datas; ?>">
-                                                                    <br>
-                                                                    <div class="mb-3">
-                                                                        <label for="exampleInputEmail1" class="form-control">Gejala</label>
-                                                                        <?php foreach ($gejala_tb as $g) : ?>
-                                                                            <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                            <?= $g["ket_gejala"]; ?><br />
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
-                                                                </form>
-                                                            </div>
+                                            <div class="modal fade" id="detail<?= $datarow["no_dmk_pasien"]; ?>"
+                                                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <!-- modal header -->
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Isi
+                                                                Gejala</h5>
+                                                            <button class="close" type="button" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <!-- <span aria-hidden="true">×</span> -->
+                                                            </button>
+                                                        </div>
+                                                        <!-- modal body -->
+                                                        <div class="modal-body">
+                                                            <form method="post">
+                                                                <label for="exampleInputEmail1" class="form-label">Nomor
+                                                                    Pasien</label>
+                                                                <input type="text" name="id_pas" class="form-control"
+                                                                    readonly required value="<?= $datas; ?>">
+                                                                <br>
+                                                                <div class="mb-3">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-control">Gejala</label>
+                                                                    <?php foreach ($gejala_tb as $g) : ?>
+                                                                    <input type="checkbox" name="gejala[]"
+                                                                        value="<?= $g["kd_gejala"]; ?>" />
+                                                                    <?= $g["ket_gejala"]; ?><br />
+                                                                    <?php endforeach; ?>
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-success"
+                                                                    name="gejalatambah">UPDATE</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                         </tr>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -185,8 +243,8 @@ if (isset($_POST['gejalatambah'])) {
     <!-- Atlantis DEMO methods, don't include it in your project! -->
     <script src="../../assets/js/setting-demo2.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable({});
-        });
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable({});
+    });
     </script>
 </body>
