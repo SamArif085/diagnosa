@@ -1,9 +1,6 @@
 <?php
 require "koneksi/koneksi.php";
 
-// $detail = ('select tb_detail.id_pas, tb_detail.kd_gejala, tb_detail.waktu, tb_pasien.id_pasien, tb_pasien.nama_pasien, tb_pasien.alamat_pasien, tb_pasien.jen_kel_pasien, tb_pasien.no_dmk, tb_pasien.dx_med, tb_penyakit_gejala.kd_gejala, tb_penyakit_gejala.kd_penyakit, tb_penyakit_gejala.kd_jen_gejala, tb_jenis_gejala.kd_jen_gejala, tb_jenis_gejala.ket_jen_gejala, tb_jenis_penyebab.kd_jen_penyebab, tb_jenis_penyebab.ket_jen_penyebab, tb_penyakit_penyebab.kd_penyakit, tb_penyakit_penyebab.kd_penyebab, tb_penyakit_penyebabkd_jen_penyebab, tb_penyakit.kd_penyakit, tb_penyakit.definisi from tb.pasien join tb_detail on tb_pasien.id_pasien=tb_detail.id_pas');
-
-
 $gejala_tb = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'OMY-002'");
 $gejala_tb1 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'SMY-001'");
 $gejala_tb2 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'OMN-004'");
@@ -89,9 +86,6 @@ if (isset($_POST['gejalatambah'])) {
                                             foreach ($det as $datarow) :
                                                 $datas = $datarow['no_dmk_pasien'];
                                                 foreach ($detail as $dettaill) {
-                                                    // $idpasein = $dettaill['id_pasien'];
-                                                    // $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
-                                                    // $dat = mysqli_query($koneksi, $abc);
                                                     if ($dettaill['id_pasien'] == $datas) {
                                                         $kdgejala = $dettaill['kd_gejala'];
                                                     }
