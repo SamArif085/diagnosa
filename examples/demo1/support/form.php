@@ -7,8 +7,8 @@ $db = "diagnosa";
 
 $koneksi = mysqli_connect($host, $username, $password, $db);
 
-$gejala_tb = mysqli_query($koneksi, "SELECT tb_penyakit_gejala.kd_gejala, tb_gejala.kd_gejala, tb_gejala.ket_gejala FROM tb_penyakit_gejala join tb_gejala on tb_gejala.kd_gejala = tb_penyakit_gejala.kd_gejala");
-$diagnosa = mysqli_query($koneksi, "SELECT * from tb_penyakit");
+// $gejala_tb = mysqli_query($koneksi, "SELECT tb_penyakit_gejala.kd_gejala, tb_gejala.kd_gejala, tb_gejala.ket_gejala FROM tb_penyakit_gejala join tb_gejala on tb_gejala.kd_gejala = tb_penyakit_gejala.kd_gejala");
+$diagnosa = mysqli_query($koneksi, "SELECT * from tb_diagnosa");
 
 $auto = mysqli_query($koneksi, "SELECT MAX(id_pasien) AS maxcode FROM tb_pasien");
 $data = mysqli_fetch_array($auto);
@@ -41,10 +41,6 @@ if (isset($_POST['btn-save'])) {
     // }
     // $query = "INSERT INTO tb_detail (id_pas, kd_gejala) VALUES ('$id_pas', '$gel')";
     $query_run = mysqli_query($koneksi, $query);
-    // return mysqli_affected_rows($koneksi);
-
-    // var_dump($query_run);
-    // die;
     if ($query_run == 1) {
         echo "
           <script>
