@@ -107,11 +107,10 @@ if (isset($_POST['gejalatambah'])) {
                                                         $kdgejala = $dettaill['kd_gejala'];
                                                     }
                                                     foreach($geja as $gejal){
-                                                        $kd_gejal = $gejal['kd_gejala'];
+                                                        $kd_gejal = $gejal['kd_diagnosa'];
                                                         foreach($dia as $diagno){
-                                                            $kd_diagnosa = $diagno['kd_diagnosa'];
-                                                            if($kd_diagnosa == $kd_gejal){
-                                                                
+                                                            if($diagno['kd_diagnosa'] == $kd_gejal){
+                                                                $diagnosa = $diagno['definisi'];
                                                             }
                                                         }
 
@@ -215,7 +214,7 @@ if (isset($_POST['gejalatambah'])) {
                                                                     <br>
                                                                     <label for="exampleInputEmail1" class="form-label">Nomor
                                                                         Pasien</label>
-                                                                    <!-- <input type="text-area" name="id_pasien" class="form-control" readonly required value="<?php echo $diagnosa ?>"> -->
+                                                                    <input type="text-area" name="id_pasien" class="form-control" readonly required value="<?php echo $diagnosa ?>">
                                                                     <label for="exampleInputEmail1" class="form-group">Major</label>
                                                                     <div class="d-flex">
                                                                         <div class="mb-3 form-group col-8">
