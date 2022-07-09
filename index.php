@@ -42,14 +42,14 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Carousel</a>
+                <a class="navbar-brand" href="index.php?page=home">Carousel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">SDKI</a>
+                            <a class="nav-link" aria-current="page" href="index.php?page=data">SDKI</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -61,46 +61,29 @@
     </header>
 
     <main>
-
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="#777" />
-                    </svg> -->
-                    <img src="img/yellow-beautiful-backgrounds-desktop-wallpaper-preview.jpg" alt="">
-
-                    <div class="container">
-                        <div class="carousel-caption text-start text-center">
-                            <center>
-                                <div class="card card-body col-6 border border-danger bg-success">
-                                    <h1 class=" text-light">Kelompok 3 </h1>
-                            </center>
-                            <!-- <h1>Example headline.</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="container ">
+            <?php
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                switch ($page) {
+                    case 'home':
+                        include "support/home.php";
+                        break;
+                    case 'data':
+                        include "tables/datatables.php";
+                        break;
+                    case 'form':
+                        include "support/form.php";
+                        break;
+                    default:
+                        include "error_404.html";
+                        break;
+                }
+            } else {
+                include "support/home.php";
+            }
+            ?>
         </div>
-
-        </div>
-
-
-        <!-- Marketing messaging and featurettes
-  ================================================== -->
-        <!-- Wrap the rest of the page in another container to center all the content. -->
-
-        <div class="container marketing">
-
-
-
-        </div><!-- /.container -->
 
 
         <!-- FOOTER -->
