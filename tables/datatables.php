@@ -56,7 +56,7 @@ if (isset($_POST['gejalatambah'])) {
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="basic-myTable" class="display table table-striped table-hover">
+                            <table id="datatable" class="display table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>No DMK</th>
@@ -68,17 +68,7 @@ if (isset($_POST['gejalatambah'])) {
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>No DMK</th>
-                                        <th>Nama Pasien</th>
-                                        <th>Alamat Pasien</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>DX MED</th>
-                                        <th>Keluhan</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </tfoot>
+
                                 <tbody>
                                     <tr>
                                         <?php
@@ -105,8 +95,8 @@ if (isset($_POST['gejalatambah'])) {
                                             <td><?php echo $datarow['dx_med']; ?></td>
                                             <td><?php echo $datarow['keluhan']; ?></td>
                                             <td>
-                                                <a class="mb-2" data-toggle="modal" data-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Tambah Gejala</i></a>
-                                                <a class="mb-2" data-toggle="modal" data-target="#diagnosa<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Diagnosa</i></a>
+                                                <a class="mb-2" data-bs-toggle="modal" data-bs-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Tambah Gejala</i></a>
+                                                <a class="mb-2" data-bs-toggle="modal" data-bs-target="#diagnosa<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Diagnosa</i></a>
                                             </td>
                                             <div class="modal fade" id="tambahgejala<?= $datarow["no_dmk_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
@@ -115,7 +105,7 @@ if (isset($_POST['gejalatambah'])) {
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Isi
                                                                 Gejala</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <button class="bi bi-x-lg" type="button" data-bs-dismiss="modal" aria-label="Close">
                                                                 <!-- <span aria-hidden="true">×</span> -->
                                                             </button>
                                                         </div>
@@ -173,7 +163,7 @@ if (isset($_POST['gejalatambah'])) {
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Isi
                                                                 Gejala</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <button class="bi bi-x-lgbi bi-x-lg" type="button" data-bs-dismiss="modal" aria-label="Close">
                                                                 <!-- <span aria-hidden="true">×</span> -->
                                                             </button>
                                                         </div>
