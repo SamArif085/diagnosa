@@ -181,8 +181,7 @@ if (isset($_POST['gejalatambah'])) {
                                                             <!-- modal body -->
                                                             <div class="modal-body">
                                                                 <form method="post">
-                                                                    <label for="exampleInputEmail1" class="form-label">Nomor
-                                                                        Pasien</label>
+                                                                    <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
                                                                     <input type="text" name="id_pasien" class="form-control" readonly required value="<?= $datarow["no_dmk_pasien"]; ?>">
                                                                     <br>
                                                                     <?php
@@ -191,24 +190,25 @@ if (isset($_POST['gejalatambah'])) {
                                                                     $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
                                                                     $dat = mysqli_query($koneksi, $abc);
                                                                     $count1 = mysqli_num_rows($dat);
-                                                                    if ($count1 == 'diare') {
-                                                                        $coba = 'mantap';
-                                                                    } else {
-                                                                        $coba = 'bersihan';
-                                                                    }
-                                                                    ?>">
+
+                                                                    $sql = "SELECT COUNT(tb_detail.kd_gejala), tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein' GROUP BY tb_diagnosa.definisi ORDER BY tb_gejala.kd_diagnosa";
+                                                                    $data = mysqli_query($koneksi, $sql);
+                                                                    ?>
                                                                     <label for="exampleInputEmail1" class="form-group">Major</label>
                                                                     <div class="d-flex">
                                                                         <div class="mb-3 form-group col-8">
                                                                             <label for="exampleInputEmail1" class="form-control">Gejala</label>
                                                                             <?php foreach ($dat as $Gejala) : ?>
-                                                                                <input type="checkbox" />
+                                                                                <input type="checkbox" /> 
                                                                                 <?= $Gejala["kd_gejala"]; ?>, <?= $Gejala["ket_gejala"]; ?><br />
                                                                             <?php endforeach; ?>
                                                                         </div>
                                                                         <div class="form-group col-4">
                                                                             <label for="exampleInputEmail1" class="form-control">Diagnosa</label>
-                                                                            <input type="checkbox" /><?= $coba; ?><br />
+                                                                            <?php foreach ($data as $item) : ?>
+                                                                                <input type="checkbox" />
+                                                                                <?php echo $item['kd_diagnosa'] ?> : <?php echo $item['definisi'] ?><br />
+                                                                            <?php endforeach; ?>
                                                                         </div>
                                                                     </div>
                                                                     <label for=" exampleInputEmail1" class="form-group">Penyebab</label>
@@ -237,27 +237,4 @@ if (isset($_POST['gejalatambah'])) {
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    <!--   Core JS Files   -->
-    <script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
-    <script src="../../assets/js/core/popper.min.js"></script>
-    <script src="../../assets/js/core/bootstrap.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-
-    <!-- jQuery Scrollbar -->
-    <script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <!-- Datatables -->
-    <script src="../../assets/js/plugin/datatables/datatables.min.js"></script>
-    <!-- Atlantis JS -->
-    <script src="../../assets/js/atlantis.min.js"></script>
-    <!-- Atlantis DEMO methods, don't include it in your project! -->
-    <script src="../../assets/js/setting-demo2.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable({});
-        });
-    </script>
 </body>
