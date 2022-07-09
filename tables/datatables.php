@@ -12,11 +12,13 @@ if (isset($_POST['btn-save'])) {
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
-    $tgl = $_POST['tgl'];
+    $tgl = htmlspecialchars($_POST['tgl']);
     // var_dump($tgl);
     // die;
 
-    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, dx_med, keluhan, tgl) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$dx', '$keluhan', $tgl)";
+    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, dx_med, keluhan, tanggal) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$dx', '$keluhan', '$tgl')";
+    // var_dump($query);
+    // die;
     $query_run = mysqli_query($koneksi, $query);
     if ($query_run == 1) {
         echo "
@@ -92,7 +94,7 @@ if (isset($_POST['hapus'])) {
                                         <td><?php echo $datarow['jen_kel_pasien']; ?></td>
                                         <td><?php echo $datarow['dx_med']; ?></td>
                                         <td><?php echo $datarow['keluhan']; ?></td>
-                                        <td><?php echo $datarow['tgl']; ?></td>
+                                        <td><?php echo $datarow['tanggal']; ?></td>
                                         <td>
                                             <a class="mb-2 btn btn-primary"
                                                 href="support/diagnosa.php?no_dmk_pasien=<?= $datarow["no_dmk_pasien"]; ?>">
