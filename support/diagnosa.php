@@ -171,7 +171,7 @@ if (isset($_POST['simpan'])) {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
+                                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
                                 </div>
                                 </form>
                             </div>
@@ -246,7 +246,7 @@ if (isset($_POST['simpan'])) {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
+                                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -319,7 +319,7 @@ if (isset($_POST['simpan'])) {
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
+                                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
                                 </div>
                             </div>
                         </div>

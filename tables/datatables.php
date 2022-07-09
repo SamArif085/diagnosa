@@ -128,7 +128,7 @@ if (isset($_POST['hapus'])) {
                                                                         class="form-label">Nama Pasien</label>
                                                                     <input type="text" class="form-control" id="nama"
                                                                         name="nama"
-                                                                        value="<?= $datarow["no_dmk_pasien"]; ?>"
+                                                                        value="<?= $datarow["nama_pasien"]; ?>"
                                                                         aria-describedby="emailHelp">
                                                                 </div>
                                                                 <div class="mb-3">
@@ -177,8 +177,7 @@ if (isset($_POST['hapus'])) {
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Close</button>
                                                             <button type="submit" name="hapus"
-                                                                class="btn btn-primary">Save
-                                                                changes</button>
+                                                                class="btn btn-success">Simpan</button>
                                                         </div>
                                                         </form>
                                                     </div>
@@ -209,8 +208,7 @@ if (isset($_POST['hapus'])) {
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Close</button>
                                                             <button type="submit" name="hapus"
-                                                                class="btn btn-primary">Save
-                                                                changes</button>
+                                                                class="btn btn-success">Simpan</button>
                                                         </div>
                                                         </form>
                                                     </div>
@@ -343,7 +341,10 @@ if (isset($_POST['hapus'])) {
                             <label for="tgl" class="form-label">Tanggal</label>
                             <input type="date" class="form-control" name="tgl" id="tgl">
                         </div>
-                        <button type="submit" name="btn-save" class="btn btn-primary">Tambah</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="btn-save" class="btn btn-success">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>
