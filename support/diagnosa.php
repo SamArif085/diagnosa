@@ -50,8 +50,9 @@ if (isset($_POST['simpan'])) {
     $gel = $_POST['gejala'];
     $id_pasien = $_POST['id_pasien'];
     $diagnosapost = $_POST['diagnosa'];
-      $penyebab = $_POST['penyebab'];
-
+    $penyebab = $_POST['penyebab'];
+var_dump($penyebab);
+die;
     foreach ($gel as $data) {
         // echo $data;
         $query = "INSERT INTO tb_detail (id_pasien, kd_gejala , kd_diagnosa , kd_penyebab) VALUES ('$id_pasien', '$data','$diagnosapost','$penyebab')";
@@ -107,60 +108,63 @@ if (isset($_POST['simpan'])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                        <input type="text" class="form-control" value="<?php echo $nopasien ?>" readonly>
-                        <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
-                        <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
-                        <input type="text" class="form-control" name="diagnosa" value="D-001" readonly hidden>
-                        <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
-                        <div class=" d-flex">
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail1" class="form-control">Subjektif</label>
-                                <?php foreach ($gejala_tbsmy1 as $g) : ?>
-                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                <?= $g["ket_gejala"]; ?><br />
-                                <?php endforeach; ?>
+                        <form method="POST" enctype="multipart/form-data">
+                            <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
+                            <input type="text" class="form-control" name="id_pasien" value="<?php echo $nopasien ?>"
+                                readonly>
+                            <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
+                            <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
+                            <input type="text" class="form-control" name="diagnosa" value="D-001" readonly hidden>
+                            <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
+                            <div class=" d-flex">
+                                <div class="form-group col-6">
+                                    <label for="exampleInputEmail1" class="form-control">Subjektif</label>
+                                    <?php foreach ($gejala_tbsmy1 as $g) : ?>
+                                    <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                    <?= $g["ket_gejala"]; ?><br />
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="exampleInputEmail2" class="form-control">Objektif</label>
+                                    <?php foreach ($gejala_tbomy1 as $g) : ?>
+                                    <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                    <?= $g["ket_gejala"]; ?><br />
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail2" class="form-control">Objektif</label>
-                                <?php foreach ($gejala_tbomy1 as $g) : ?>
-                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                <?= $g["ket_gejala"]; ?><br />
-                                <?php endforeach; ?>
+                            <label for="exampleInputEmail1" class="form-label">Gejala Minor</label>
+                            <div class="d-flex ">
+                                <div class="form-group col-6">
+                                    <label for="exampleInputEmail1" class="form-control">Subjektif</label>
+                                    <?php foreach ($gejala_tbsmn1 as $g) : ?>
+                                    <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                    <?= $g["ket_gejala"]; ?><br />
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="exampleInputEmail1" class="form-control">Objektif</label>
+                                    <?php foreach ($gejala_tbomn1 as $g) : ?>
+                                    <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
+                                    <?= $g["ket_gejala"]; ?><br />
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                        </div>
-                        <label for="exampleInputEmail1" class="form-label">Gejala Minor</label>
-                        <div class="d-flex ">
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail1" class="form-control">Subjektif</label>
-                                <?php foreach ($gejala_tbsmn1 as $g) : ?>
-                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                <?= $g["ket_gejala"]; ?><br />
-                                <?php endforeach; ?>
+                            <div class="">
+                                <label for="exampleInputEmail1" class="form-label">Penyebab</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Pilih</option>
+                                    <?php foreach ($penyebab1 as $g) : ?>
+                                    <option name="penyebab" value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail1" class="form-control">Objektif</label>
-                                <?php foreach ($gejala_tbomn1 as $g) : ?>
-                                <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                <?= $g["ket_gejala"]; ?><br />
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                        <div class="">
-                            <label for="exampleInputEmail1" class="form-label">Penyebab</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih</option>
-                                <?php foreach ($penyebab1 as $g) : ?>
-                                <option name="penyebab" value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
-                                </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" name="simpan">Save changes</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
