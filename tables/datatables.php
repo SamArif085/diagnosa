@@ -4,32 +4,7 @@ require "koneksi/koneksi.php";
 $pasien = 'SELECT * FROM tb_pasien';
 $det = mysqli_query($koneksi, $pasien);
 
-if (isset($_POST['gejalatambah'])) {
-    $gel = $_POST['gejala'];
-    $id_pasien = $_POST['id_pasien'];
 
-    foreach ($gel as $data) {
-        // echo $data;
-        $query = "INSERT INTO tb_detail (id_pasien, kd_gejala) VALUES ('$id_pasien', '$data')";
-        $query_run = mysqli_query($koneksi, $query);
-
-        if ($query_run == 1) {
-            echo "
-			  <script>
-			  alert('berhasil tambah !');
-				  document.location.href = 'index.php?page=data';
-			  </script>
-			  ";
-        } else {
-            echo "
-			  <script>
-			  alert('data tidak berhasil tambah !');
-				  document.location.href = 'index.php?page=data';
-			  </script>
-			  ";
-        }
-    }
-}
 ?>
 
 <body>
@@ -65,89 +40,12 @@ if (isset($_POST['gejalatambah'])) {
                                         <td><?php echo $datarow['dx_med']; ?></td>
                                         <td><?php echo $datarow['keluhan']; ?></td>
                                         <td>
-                                            <a class="mb-2 btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"> Tambah
-                                                Gejala</a>
                                             <a class="mb-2 btn btn-primary"
                                                 href="support/diagnosa.php?no_dmk_pasien=<?= $datarow["no_dmk_pasien"]; ?>">
                                                 Diagnosa</a>
                                             <a class=" mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal"
                                                 data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></a>
                                         </td>
-                                        <div class="modal fade" id="tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <!-- modal header -->
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Isi
-                                                            Gejala</h5>
-                                                        <button class="bi bi-x-lg" type="button" data-bs-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <!-- <span aria-hidden="true">×</span> -->
-                                                        </button>
-                                                    </div>
-                                                    <!-- modal body -->
-                                                    <div class="modal-body">
-                                                        <form method="post">
-                                                            <label for="exampleInputEmail1" class="form-label">Nomor
-                                                                Pasien</label>
-                                                            <input type="text" name="id_pasien" class="form-control"
-                                                                readonly required
-                                                                value="<?= $datarow["no_dmk_pasien"]; ?>">
-                                                            <br>
-                                                            <label for="exampleInputEmail1"
-                                                                class="form-group">Major</label>
-                                                            <div class="d-flex">
-                                                                <div class="mb-3 form-group col-8">
-                                                                    <label for="exampleInputEmail1"
-                                                                        class="form-control">Objektif</label>
-                                                                    <?php foreach ($gejala_tb as $g) : ?>
-                                                                    <input type="checkbox" name="gejala[]"
-                                                                        value="<?= $g["kd_gejala"]; ?>" />
-                                                                    <?= $g["ket_gejala"]; ?><br />
-                                                                    <?php endforeach; ?>
-                                                                </div>
-                                                                <div class="form-group col-4">
-                                                                    <label for="exampleInputEmail1"
-                                                                        class="form-control">Subjektif</label>
-                                                                    <?php foreach ($gejala_tb1 as $g) : ?>
-                                                                    <input type="checkbox" name="gejala[]"
-                                                                        value="<?= $g["kd_gejala"]; ?>" />
-                                                                    <?= $g["ket_gejala"]; ?><br />
-                                                                    <?php endforeach; ?>
-                                                                </div>
-                                                            </div>
-                                                            <label for="exampleInputEmail1"
-                                                                class="form-group">Minor</label>
-                                                            <div class="d-flex">
-                                                                <div class="mb-3 form-group col-8">
-                                                                    <label for="exampleInputEmail1"
-                                                                        class="form-control">Objektif</label>
-                                                                    <?php foreach ($gejala_tb2 as $g) : ?>
-                                                                    <input type="checkbox" name="gejala[]"
-                                                                        value="<?= $g["kd_gejala"]; ?>" />
-                                                                    <?= $g["ket_gejala"]; ?><br />
-                                                                    <?php endforeach; ?>
-                                                                </div>
-                                                                <div class="form-group col-4">
-                                                                    <label for="exampleInputEmail1"
-                                                                        class="form-control">Subjektif</label>
-                                                                    <?php foreach ($gejala_tb3 as $g) : ?>
-                                                                    <input type="checkbox" name="gejala[]"
-                                                                        value="<?= $g["kd_gejala"]; ?>" />
-                                                                    <?= $g["ket_gejala"]; ?><br />
-                                                                    <?php endforeach; ?>
-                                                                </div>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-success"
-                                                                name="gejalatambah">UPDATE</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="modal fade" id="diagnosa<?= $datarow["no_dmk_pasien"]; ?>"
                                             tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                             aria-hidden="true">
