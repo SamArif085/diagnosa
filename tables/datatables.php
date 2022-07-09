@@ -1,22 +1,8 @@
 <?php
 require "koneksi/koneksi.php";
 
-$gejala_tb = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'OMY-002'");
-$gejala_tb1 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'SMY-001'");
-$gejala_tb2 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'OMN-004'");
-$gejala_tb3 = mysqli_query($koneksi, "SELECT * FROM tb_gejala JOIN tb_jenis_gejala on tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_jenis_gejala.kd_jen_gejala = 'SMN-003'");
-
-$sql = "SELECT * FROM tb_detail";
-$detail = mysqli_query($koneksi, $sql);
-
 $pasien = 'SELECT * FROM tb_pasien';
 $det = mysqli_query($koneksi, $pasien);
-
-$diag = 'SELECT * FROM tb_diagnosa';
-$dia = mysqli_query($koneksi, $diag);
-
-$gej = 'SELECT * FROM tb_gejala';
-$geja = mysqli_query($koneksi, $gej);
 
 if (isset($_POST['gejalatambah'])) {
     $gel = $_POST['gejala'];
@@ -83,7 +69,7 @@ if (isset($_POST['gejalatambah'])) {
                                                 data-bs-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"> Tambah
                                                 Gejala</a>
                                             <a class="mb-2 btn btn-primary"
-                                                href="support/diagnosa.php<?= $datarow["no_dmk_pasien"]; ?>">
+                                                href="support/diagnosa.php?no_dmk_pasien=<?= $datarow["no_dmk_pasien"]; ?>">
                                                 Diagnosa</a>
                                             <a class=" mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal"
                                                 data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></a>
