@@ -13,8 +13,7 @@ if (isset($_POST['btn-save'])) {
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
     $tgl = htmlspecialchars($_POST['tgl']);
-    // var_dump($tgl);
-    // die;
+
 
     $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, dx_med, keluhan, tanggal) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$dx', '$keluhan', '$tgl')";
     // var_dump($query);
@@ -100,8 +99,91 @@ if (isset($_POST['hapus'])) {
                                                 href="support/diagnosa.php?no_dmk_pasien=<?= $datarow["no_dmk_pasien"]; ?>">
                                                 Diagnosa
                                             </a>
-                                            <a class=" mb-2 btn btn-warning bi bi-pencil-fill" data-bs-toggle="modal"
-                                                data-bs-target="#edit<?= $datarow["no_dmk_pasien"]; ?>"></a>
+                                            <button class=" mb-2 btn btn-warning bi bi-pencil-fill"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#edit<?= $datarow["no_dmk_pasien"]; ?>"></button>
+                                            <div class="modal fade" id="edit<?= $datarow["no_dmk_pasien"]; ?>"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Edit&nbsp;<?php echo $datarow['nama_pasien']; ?>
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form method="POST">
+                                                                <div class="mb-3">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-label">Nomor Pasien</label>
+                                                                    <input type="text" class="form-control" id="id_pas"
+                                                                        name="id_pas"
+                                                                        value="<?= $datarow["no_dmk_pasien"]; ?>"
+                                                                        aria-describedby="emailHelp">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-label">Nama Pasien</label>
+                                                                    <input type="text" class="form-control" id="nama"
+                                                                        name="nama"
+                                                                        value="<?= $datarow["no_dmk_pasien"]; ?>"
+                                                                        aria-describedby="emailHelp">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-label">Jenis Kelamin</label>
+                                                                    <select class="form-select" name="jk"
+                                                                        aria-label="Default select example">
+                                                                        <option
+                                                                            value="<?= $datarow["jen_kel_pasien"]; ?>"
+                                                                            selected><?= $datarow["jen_kel_pasien"]; ?>
+                                                                        </option>
+                                                                        <option value="L">Laki - Laki</option>
+                                                                        <option value="P">Perempuan</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="alamat"
+                                                                        class="form-label">Alamat</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="alamat"
+                                                                        value="<?= $datarow["alamat_pasien"]; ?>"
+                                                                        id="alamat">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="DX" class="form-label">DX MED</label>
+                                                                    <input type="text"
+                                                                        value="<?= $datarow["dx_med"]; ?>"
+                                                                        class="form-control" name="dx" id="DX">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="keluhan"
+                                                                        class="form-label">Keluhan</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="keluhan"
+                                                                        value="<?= $datarow["keluhan"]; ?>"
+                                                                        id="keluhan">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="tgl" class="form-label">Tanggal</label>
+                                                                    <input type="date"
+                                                                        value="<?= $datarow["tanggal"]; ?>"
+                                                                        class="form-control" name="tgl" id="tgl">
+                                                                </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" name="hapus"
+                                                                class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button class=" mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal"
                                                 data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></button>
                                             <div class="modal fade" id="delete<?= $datarow["no_dmk_pasien"]; ?>"
