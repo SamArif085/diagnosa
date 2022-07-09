@@ -44,7 +44,7 @@ if (isset($_POST['btn-save'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Data Pasien</h4>
-                        <button class=" mb-2 btn btn-danger bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Pasien</button>
+                        <button class=" mb-2 btn btn-danger bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#tambah"> Tambah Pasien</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
