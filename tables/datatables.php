@@ -82,7 +82,7 @@ if (isset($_POST['gejalatambah'])) {
                                             <a class="mb-2 btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"> Tambah
                                                 Gejala</a>
-                                            <a class="mb-2 btn btn-primary" href="diagnosa.php">
+                                            <a class="mb-2 btn btn-primary" href="support/diagnosa.php">
                                                 Diagnosa</a>
                                             <a class=" mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal"
                                                 data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></a>
