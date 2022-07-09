@@ -12,7 +12,9 @@ if (isset($_POST['btn-save'])) {
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
-    $tgl = htmlspecialchars($_POST['tgl']);
+    $tgl = $_POST['tgl'];
+    // var_dump($tgl);
+    // die;
 
     $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, dx_med, keluhan, tgl) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$dx', '$keluhan', $tgl)";
     $query_run = mysqli_query($koneksi, $query);
@@ -33,8 +35,27 @@ if (isset($_POST['btn-save'])) {
     }
 }
 
-
-
+if (isset($_POST['hapus'])) {
+    $id = $_POST['id_pasien'];
+ 
+    $query  = "DELETE FROM tb_pasien WHERE no_dmk_pasien = '$id'";
+    $query_run = mysqli_query($koneksi, $query);
+    if ($query_run > 0) {
+        echo "
+          <script>
+          alert('berhasil Dihapus !');
+              document.location.href = 'index.php?page=data';
+          </script>
+          ";
+    } else {
+        echo "
+          <script>
+          alert('data tidak berhasil Dihapus !');
+              document.location.href = 'index.php?page=data';
+          </script>
+          ";
+    }
+}
 ?>
 
 <body>
@@ -44,7 +65,8 @@ if (isset($_POST['btn-save'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Data Pasien</h4>
-                        <button class=" mb-2 btn btn-danger bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#tambah"> Tambah Pasien</button>
+                        <button class=" mb-2 btn btn-danger bi bi-plus-circle" data-bs-toggle="modal"
+                            data-bs-target="#tambah"> Tambah Pasien</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -64,38 +86,77 @@ if (isset($_POST['btn-save'])) {
                                 <tbody>
                                     <tr>
                                         <?php foreach ($det as $datarow) : ?>
-                                            <td><?php echo $datarow['no_dmk_pasien']; ?></td>
-                                            <td><?php echo $datarow['nama_pasien']; ?></td>
-                                            <td><?php echo $datarow['alamat_pasien']; ?></td>
-                                            <td><?php echo $datarow['jen_kel_pasien']; ?></td>
-                                            <td><?php echo $datarow['dx_med']; ?></td>
-                                            <td><?php echo $datarow['keluhan']; ?></td>
-                                            <td>
-                                                <a class="mb-2 btn btn-primary" href="support/diagnosa.php?no_dmk_pasien=<?= $datarow["no_dmk_pasien"]; ?>">
-                                                    Diagnosa
-                                                </a>
-                                                <a class=" mb-2 btn btn-danger bi bi-pencil-fill" data-bs-toggle="modal" data-bs-target="#edit<?= $datarow["no_dmk_pasien"]; ?>"></a>
-                                                <a class=" mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></a>
-                                            </td>
-                                            <div class="modal fade" id="diagnosa<?= $datarow["no_dmk_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
+                                        <td><?php echo $datarow['no_dmk_pasien']; ?></td>
+                                        <td><?php echo $datarow['nama_pasien']; ?></td>
+                                        <td><?php echo $datarow['alamat_pasien']; ?></td>
+                                        <td><?php echo $datarow['jen_kel_pasien']; ?></td>
+                                        <td><?php echo $datarow['dx_med']; ?></td>
+                                        <td><?php echo $datarow['keluhan']; ?></td>
+                                        <td><?php echo $datarow['tgl']; ?></td>
+                                        <td>
+                                            <a class="mb-2 btn btn-primary"
+                                                href="support/diagnosa.php?no_dmk_pasien=<?= $datarow["no_dmk_pasien"]; ?>">
+                                                Diagnosa
+                                            </a>
+                                            <a class=" mb-2 btn btn-warning bi bi-pencil-fill" data-bs-toggle="modal"
+                                                data-bs-target="#edit<?= $datarow["no_dmk_pasien"]; ?>"></a>
+                                            <button class=" mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal"
+                                                data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></button>
+                                            <div class="modal fade" id="delete<?= $datarow["no_dmk_pasien"]; ?>"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <!-- modal header -->
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Isi
-                                                                Gejala</h5>
-                                                            <button class="bi bi-x-lgbi bi-x-lg" type="button" data-bs-dismiss="modal" aria-label="Close">
-                                                                <!-- <span aria-hidden="true">×</span> -->
-                                                            </button>
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Hapus&nbsp;<?php echo $datarow['nama_pasien']; ?>
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <!-- modal body -->
                                                         <div class="modal-body">
-                                                            <form method="post">
-                                                                <label for="exampleInputEmail1" class="form-label">Nomor
-                                                                    Pasien</label>
-                                                                <input type="text" name="id_pasien" class="form-control" readonly required value="<?= $datarow["no_dmk_pasien"]; ?>">
-                                                                <br>
-                                                                <?php
+                                                            <form method="POST" enctype="multipart/form-data">
+                                                                <input type="hidden" name="id_pasien"
+                                                                    value="<?= $datarow["no_dmk_pasien"]; ?>">
+                                                                <div class=" text-danger">Anda yakin menghapus
+                                                                    Pasien : &nbsp;<?= $datarow["no_dmk_pasien"]; ?>
+                                                                </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" name="hapus"
+                                                                class="btn btn-primary">Save
+                                                                changes</button>
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <div class="modal fade" id="diagnosa<?= $datarow["no_dmk_pasien"]; ?>"
+                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <!-- modal header -->
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Isi
+                                                            Gejala</h5>
+                                                        <button class="bi bi-x-lgbi bi-x-lg" type="button"
+                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                            <!-- <span aria-hidden="true">×</span> -->
+                                                        </button>
+                                                    </div>
+                                                    <!-- modal body -->
+                                                    <div class="modal-body">
+                                                        <form method="post">
+                                                            <label for="exampleInputEmail1" class="form-label">Nomor
+                                                                Pasien</label>
+                                                            <input type="text" name="id_pasien" class="form-control"
+                                                                readonly required
+                                                                value="<?= $datarow["no_dmk_pasien"]; ?>">
+                                                            <br>
+                                                            <?php
                                                                 $idpasein = $datarow["no_dmk_pasien"];
                                                                 $kdgej = '';
                                                                 $abc = "SELECT tb_detail.kd_gejala, tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.ket_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein'";
@@ -105,39 +166,44 @@ if (isset($_POST['btn-save'])) {
                                                                 $sql = "SELECT COUNT(tb_detail.kd_gejala), tb_diagnosa.kd_diagnosa, tb_diagnosa.kd_sub, tb_gejala.kd_gejala, tb_gejala.kd_diagnosa, tb_diagnosa.definisi FROM tb_detail JOIN tb_pasien ON tb_detail.id_pasien = tb_pasien.no_dmk_pasien JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_diagnosa ON tb_gejala.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$idpasein' GROUP BY tb_diagnosa.definisi ORDER BY tb_gejala.kd_diagnosa";
                                                                 $data = mysqli_query($koneksi, $sql);
                                                                 ?>
-                                                                <label for="exampleInputEmail1" class="form-group">Major</label>
-                                                                <div class="d-flex">
-                                                                    <div class="mb-3 form-group col-8">
-                                                                        <label for="exampleInputEmail1" class="form-control">Gejala</label>
-                                                                        <?php foreach ($dat as $Gejala) : ?>
-                                                                            &middot; <?= $Gejala["kd_gejala"]; ?>,
-                                                                            <?= $Gejala["ket_gejala"]; ?><br />
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-                                                                    <div class="form-group col-4">
-                                                                        <label for="exampleInputEmail1" class="form-control"> </label>
-                                                                        <?php foreach ($data as $item) : ?>
-                                                                            &middot; <?php echo $item['kd_diagnosa'] ?> :
-                                                                            <?php echo $item['definisi'] ?><br />
-                                                                        <?php endforeach; ?>
-                                                                    </div>
+                                                            <label for="exampleInputEmail1"
+                                                                class="form-group">Major</label>
+                                                            <div class="d-flex">
+                                                                <div class="mb-3 form-group col-8">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-control">Gejala</label>
+                                                                    <?php foreach ($dat as $Gejala) : ?>
+                                                                    &middot; <?= $Gejala["kd_gejala"]; ?>,
+                                                                    <?= $Gejala["ket_gejala"]; ?><br />
+                                                                    <?php endforeach; ?>
                                                                 </div>
-                                                                <label for=" exampleInputEmail1" class="form-group">Penyebab</label>
-                                                                <div class="d-flex">
-                                                                    <div class="mb-3 form-group col-8">
-                                                                        <?php foreach ($gejala_tb2 as $g) : ?>
-                                                                            &middot; <?= $g["ket_gejala"]; ?><br />
-                                                                        <?php endforeach; ?>
-                                                                    </div>
+                                                                <div class="form-group col-4">
+                                                                    <label for="exampleInputEmail1"
+                                                                        class="form-control"> </label>
+                                                                    <?php foreach ($data as $item) : ?>
+                                                                    &middot; <?php echo $item['kd_diagnosa'] ?> :
+                                                                    <?php echo $item['definisi'] ?><br />
+                                                                    <?php endforeach; ?>
                                                                 </div>
-                                                                <button type="submit" class="btn btn-success" name="gejalatambah">UPDATE</button>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <label for=" exampleInputEmail1"
+                                                                class="form-group">Penyebab</label>
+                                                            <div class="d-flex">
+                                                                <div class="mb-3 form-group col-8">
+                                                                    <?php foreach ($gejala_tb2 as $g) : ?>
+                                                                    &middot; <?= $g["ket_gejala"]; ?><br />
+                                                                    <?php endforeach; ?>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-success"
+                                                                name="gejalatambah">UPDATE</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </tr>
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -146,7 +212,8 @@ if (isset($_POST['btn-save'])) {
             </div>
         </div>
     </div>
-    <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <!-- modal header -->
@@ -161,7 +228,8 @@ if (isset($_POST['btn-save'])) {
                     <form method="POST">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                            <input type="text" class="form-control" id="id_pas" name="id_pas" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="id_pas" name="id_pas"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
