@@ -50,12 +50,12 @@ if (isset($_POST['simpan'])) {
     $gel = $_POST['gejala'];
     $id_pasien = $_POST['id_pasien'];
     $diagnosapost = $_POST['diagnosa'];
-    $penyebab = $_POST['penyebab'];
-var_dump($penyebab);
+    $pen = $_POST['pen'];
+var_dump($pen);
 die;
     foreach ($gel as $data) {
         // echo $data;
-        $query = "INSERT INTO tb_detail (id_pasien, kd_gejala , kd_diagnosa , kd_penyebab) VALUES ('$id_pasien', '$data','$diagnosapost','$penyebab')";
+        $query = "INSERT INTO tb_detail (id_pasien, kd_gejala , kd_diagnosa , kd_penyebab) VALUES ('$id_pasien', '$data','$diagnosapost','$pen')";
         $query_run = mysqli_query($koneksi, $query);
 
         if ($query_run == 1) {
@@ -154,7 +154,7 @@ die;
                                 <select class="form-select" aria-label="Default select example">
                                     <option selected>Pilih</option>
                                     <?php foreach ($penyebab1 as $g) : ?>
-                                    <option name="penyebab" value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
+                                    <option name="pen" value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
                                     </option>
                                     <?php endforeach; ?>
                                 </select>
