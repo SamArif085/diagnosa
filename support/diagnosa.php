@@ -97,10 +97,11 @@ if (isset($_POST['simpan'])) {
         <!-- Modal -->
         <div class="modal fade" id='diagnosa1<?php echo $nopasien ?>' tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Bersihan
+                            Jalan Nafas Tidak Efektif</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -110,17 +111,16 @@ if (isset($_POST['simpan'])) {
                         <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
                         <input type="text" class="form-control" value="D-001" readonly hidden>
                         <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
-                        <div class="d-flex justify-content-center">
-                            <br>
-                            <div class="form-group col-5">
+                        <div class=" d-flex">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Subjektif</label>
                                 <?php foreach ($gejala_tbsmy1 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
                                 <?php endforeach; ?>
                             </div>
-                            <div class="form-group col-5">
-                                <label for="exampleInputEmail1" class="form-control">Objektif</label>
+                            <div class="form-group col-6">
+                                <label for="exampleInputEmail2" class="form-control">Objektif</label>
                                 <?php foreach ($gejala_tbomy1 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
@@ -128,16 +128,15 @@ if (isset($_POST['simpan'])) {
                             </div>
                         </div>
                         <label for="exampleInputEmail1" class="form-label">Gejala Minor</label>
-                        <div class="d-flex justify-content-center">
-                            <br>
-                            <div class="form-group col-5">
+                        <div class="d-flex ">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Subjektif</label>
                                 <?php foreach ($gejala_tbsmn1 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
                                 <?php endforeach; ?>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Objektif</label>
                                 <?php foreach ($gejala_tbomn1 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
@@ -145,7 +144,7 @@ if (isset($_POST['simpan'])) {
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="justify-content-center">
+                        <div class="">
                             <label for="exampleInputEmail1" class="form-label">Penyebab</label>
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Pilih</option>
@@ -168,7 +167,7 @@ if (isset($_POST['simpan'])) {
         <!-- Modal -->
         <div class="modal fade" id='diagnosa2<?php echo $nopasien ?>' tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -181,16 +180,16 @@ if (isset($_POST['simpan'])) {
                         <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
                         <input type="text" class="form-control" value="D-002" readonly hidden>
                         <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex ">
                             <br>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Subjektif</label>
                                 <?php foreach ($gejala_tbsmy2 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
                                 <?php endforeach; ?>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Objektif</label>
                                 <?php foreach ($gejala_tbomy2 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
@@ -199,16 +198,16 @@ if (isset($_POST['simpan'])) {
                             </div>
                         </div>
                         <label for="exampleInputEmail1" class="form-label">Gejala Minor</label>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex ">
                             <br>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Subjektif</label>
                                 <?php foreach ($gejala_tbsmn2 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
                                 <?php endforeach; ?>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Objektif</label>
                                 <?php foreach ($gejala_tbomn2 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
@@ -216,7 +215,7 @@ if (isset($_POST['simpan'])) {
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="justify-content-center">
+                        <div class="">
                             <label for="exampleInputEmail1" class="form-label">Penyebab</label>
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Pilih</option>
@@ -238,7 +237,7 @@ if (isset($_POST['simpan'])) {
             data-bs-target="#diagnosa3<?php echo $nopasien ?>">Diare</div>
         <div class="modal fade" id='diagnosa3<?php echo $nopasien ?>' tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -251,16 +250,16 @@ if (isset($_POST['simpan'])) {
                         <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
                         <input type="text" class="form-control" value="D-003" readonly hidden>
                         <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex ">
                             <br>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Subjektif</label>
                                 <?php foreach ($gejala_tbsmy3 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
                                 <?php endforeach; ?>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Objektif</label>
                                 <?php foreach ($gejala_tbomy3 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
@@ -269,16 +268,16 @@ if (isset($_POST['simpan'])) {
                             </div>
                         </div>
                         <label for="exampleInputEmail1" class="form-label">Gejala Minor</label>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex ">
                             <br>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Subjektif</label>
                                 <?php foreach ($gejala_tbsmn3 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
                                 <?= $g["ket_gejala"]; ?><br />
                                 <?php endforeach; ?>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6">
                                 <label for="exampleInputEmail1" class="form-control">Objektif</label>
                                 <?php foreach ($gejala_tbomn3 as $g) : ?>
                                 <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
@@ -286,7 +285,7 @@ if (isset($_POST['simpan'])) {
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="justify-content-center">
+                        <div class="">
                             <label for="exampleInputEmail1" class="form-label">Penyebab</label>
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Pilih</option>
