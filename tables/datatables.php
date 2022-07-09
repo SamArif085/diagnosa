@@ -47,16 +47,16 @@ if (isset($_POST['gejalatambah'])) {
 ?>
 
 <body>
-    <div class="page-inner">
+    <div class="m-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Basic</h4>
+                        <h4 class="card-title">Data Pasien</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="datatable" class="display table table-striped table-hover">
+                            <table id="datatable" class="display table table-hover">
                                 <thead>
                                     <tr>
                                         <th>No DMK</th>
@@ -71,23 +71,7 @@ if (isset($_POST['gejalatambah'])) {
 
                                 <tbody>
                                     <tr>
-                                        <?php
-                                        foreach ($det as $datarow) :
-                                            $datas = $datarow['no_dmk_pasien'];
-                                            foreach ($detail as $dettaill) {
-                                                if ($dettaill['id_pasien'] == $datas) {
-                                                    $kdgejala = $dettaill['kd_gejala'];
-                                                }
-                                                foreach ($geja as $gejal) {
-                                                    $kd_gejal = $gejal['kd_diagnosa'];
-                                                    foreach ($dia as $diagno) {
-                                                        if ($diagno['kd_diagnosa'] == $kd_gejal) {
-                                                            $diagnosa = $diagno['definisi'];
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        ?>
+                                        <?php foreach ($det as $datarow) : ?>
                                             <td><?php echo $datarow['no_dmk_pasien']; ?></td>
                                             <td><?php echo $datarow['nama_pasien']; ?></td>
                                             <td><?php echo $datarow['alamat_pasien']; ?></td>
@@ -95,8 +79,9 @@ if (isset($_POST['gejalatambah'])) {
                                             <td><?php echo $datarow['dx_med']; ?></td>
                                             <td><?php echo $datarow['keluhan']; ?></td>
                                             <td>
-                                                <a class="mb-2" data-bs-toggle="modal" data-bs-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Tambah Gejala</i></a>
-                                                <a class="mb-2" data-bs-toggle="modal" data-bs-target="#diagnosa<?= $datarow["no_dmk_pasien"]; ?>"><i class="btn btn-primary"> Diagnosa</i></a>
+                                                <a class="mb-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahgejala<?= $datarow["no_dmk_pasien"]; ?>"> Tambah Gejala</a>
+                                                <a class="mb-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#diagnosa<?= $datarow["no_dmk_pasien"]; ?>"> Diagnosa</a>
+                                                <a class="mb-2 btn btn-danger bi bi-trash" data-bs-toggle="modal" data-bs-target="#delete<?= $datarow["no_dmk_pasien"]; ?>"></a>
                                             </td>
                                             <div class="modal fade" id="tambahgejala<?= $datarow["no_dmk_pasien"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
@@ -188,15 +173,13 @@ if (isset($_POST['gejalatambah'])) {
                                                                     <div class="mb-3 form-group col-8">
                                                                         <label for="exampleInputEmail1" class="form-control">Gejala</label>
                                                                         <?php foreach ($dat as $Gejala) : ?>
-                                                                            <input type="checkbox" />
-                                                                            <?= $Gejala["kd_gejala"]; ?>, <?= $Gejala["ket_gejala"]; ?><br />
+                                                                            &middot; <?= $Gejala["kd_gejala"]; ?>, <?= $Gejala["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
                                                                     <div class="form-group col-4">
                                                                         <label for="exampleInputEmail1" class="form-control">Diagnosa</label>
                                                                         <?php foreach ($data as $item) : ?>
-                                                                            <input type="checkbox" />
-                                                                            <?php echo $item['kd_diagnosa'] ?> : <?php echo $item['definisi'] ?><br />
+                                                                            &middot; <?php echo $item['kd_diagnosa'] ?> : <?php echo $item['definisi'] ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
                                                                 </div>
@@ -204,8 +187,7 @@ if (isset($_POST['gejalatambah'])) {
                                                                 <div class="d-flex">
                                                                     <div class="mb-3 form-group col-8">
                                                                         <?php foreach ($gejala_tb2 as $g) : ?>
-                                                                            <input type="checkbox" name="gejala[]" value="<?= $g["kd_gejala"]; ?>" />
-                                                                            <?= $g["ket_gejala"]; ?><br />
+                                                                            &middot; <?= $g["ket_gejala"]; ?><br />
                                                                         <?php endforeach; ?>
                                                                     </div>
                                                                 </div>

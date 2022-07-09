@@ -50,10 +50,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.php?page=data">SDKI</a>
+                            <a class="nav-link" href="index.php?page=data">SDKI</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="index.php?page=about">About</a>
                         </li>
                     </ul>
                 </div>
@@ -63,29 +63,33 @@
 
     <main>
         <div class="container-fluid">
-            <?php
-            if (isset($_GET['page'])) {
-                $page = $_GET['page'];
-                switch ($page) {
-                    case 'home':
-                        include "support/home.php";
-                        break;
-                    case 'data':
-                        include "tables/datatables.php";
-                        break;
-                    case 'form':
-                        include "support/form.php";
-                        break;
-                    default:
-                        include "error_404.html";
-                        break;
+
+                <?php
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    switch ($page) {
+                        case 'home':
+                            include "support/home.php";
+                            break;
+                        case 'data':
+                            include "tables/datatables.php";
+                            break;
+                        case 'form':
+                            include "support/form.php";
+                            break;
+                        case 'about':
+                            include "support/about.php";
+                            break;
+                        default:
+                            include "error_404.html";
+                            break;
+                    }
+                } else {
+                    include "support/home.php";
                 }
-            } else {
-                include "support/home.php";
-            }
-            ?>
+                ?>
             <!-- FOOTER -->
-            <footer class="">
+            <footer class="fixed-bottom m-2">
                 <p class="float-end"><a href="#">Back to top</a></p>
                 <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
             </footer>
@@ -112,4 +116,4 @@
 
 </body>
 
-</html>\
+</html>
