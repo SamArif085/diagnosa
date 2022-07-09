@@ -57,6 +57,47 @@ if (isset($_POST['hapus'])) {
           ";
     }
 }
+
+if (isset($_POST['edit'])) {
+
+    // global $koneksi;
+   $namaid = htmlspecialchars($_POST['id_pass']);
+    $nama = htmlspecialchars($_POST['nama']);
+    $jk = htmlspecialchars($_POST['jk']);
+    $alamat = htmlspecialchars($_POST['alamat']);
+    $dx = htmlspecialchars($_POST['dx']);
+    $keluhan = htmlspecialchars($_POST['keluhan']);
+    $tgl = htmlspecialchars($_POST['tgl']);
+    
+    $query = "UPDATE tb_pasien SET 
+            no_dmk_pasien = '$namaid',
+            nama_pasien ='$nama',
+            alamat_pasien ='$alamat',
+            jen_kel_pasien = '$jk',
+            dx_med = '$dx',
+            keluhan = '$keluhan',
+            tanggal = '$tgl'
+            WHERE no_dmk_pasien = '$namaid'
+        ";
+        // var_dump($query);
+        // die;
+          $query_run = mysqli_query($koneksi, $query);
+                if ($query_run > 0 ) {
+            echo "
+			  <script>
+			  alert('berhasil Ubah !');
+				  document.location.href = 'index.php?page=data';
+			  </script>
+			  ";
+        } else {
+            echo "
+			  <script>
+			  alert('data tidak berhasil Ubah !');
+				  document.location.href = 'index.php?page=data';
+			  </script>
+			  ";
+        }
+}
 ?>
 
 <body>
@@ -74,6 +115,7 @@ if (isset($_POST['hapus'])) {
                             <table id="datatable" class="display table table-hover">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>No DMK</th>
                                         <th>Nama Pasien</th>
                                         <th>Alamat Pasien</th>
@@ -86,7 +128,10 @@ if (isset($_POST['hapus'])) {
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <?php
+                                         $i = 1; ?>
                                         <?php foreach ($det as $datarow) : ?>
+                                        <td><?= $i++; ?></td>
                                         <td><?php echo $datarow['no_dmk_pasien']; ?></td>
                                         <td><?php echo $datarow['nama_pasien']; ?></td>
                                         <td><?php echo $datarow['alamat_pasien']; ?></td>
@@ -114,12 +159,12 @@ if (isset($_POST['hapus'])) {
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form method="POST">
+                                                            <form method="POST" enctype="multipart/form-data">
                                                                 <div class="mb-3">
                                                                     <label for="exampleInputEmail1"
                                                                         class="form-label">Nomor Pasien</label>
-                                                                    <input type="text" class="form-control" id="id_pas"
-                                                                        name="id_pas"
+                                                                    <input type="text" class="form-control"
+                                                                        name="id_pass"
                                                                         value="<?= $datarow["no_dmk_pasien"]; ?>"
                                                                         aria-describedby="emailHelp">
                                                                 </div>
@@ -176,7 +221,7 @@ if (isset($_POST['hapus'])) {
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" name="hapus"
+                                                            <button type="submit" name="edit"
                                                                 class="btn btn-success">Simpan</button>
                                                         </div>
                                                         </form>
@@ -301,9 +346,6 @@ if (isset($_POST['hapus'])) {
                 <!-- modal header -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Pasien</h5>
-                    <button class="bi bi-x-lgbi bi-x-lg" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <!-- <span aria-hidden="true">×</span> -->
-                    </button>
                 </div>
                 <!-- modal body -->
                 <div class="modal-body">
