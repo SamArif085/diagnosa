@@ -49,10 +49,12 @@ $penyebab3 = mysqli_query($koneksi, "SELECT * FROM tb_penyebab WHERE kd_diagnosa
 if (isset($_POST['simpan'])) {
     $gel = $_POST['gejala'];
     $id_pasien = $_POST['id_pasien'];
+    $diagnosapost = $_POST['diagnosa'];
+      $penyebab = $_POST['penyebab'];
 
     foreach ($gel as $data) {
         // echo $data;
-        $query = "INSERT INTO tb_detail (id_pasien, kd_gejala) VALUES ('$id_pasien', '$data')";
+        $query = "INSERT INTO tb_detail (id_pasien, kd_gejala , kd_diagnosa , kd_penyebab) VALUES ('$id_pasien', '$data','$diagnosapost','$penyebab')";
         $query_run = mysqli_query($koneksi, $query);
 
         if ($query_run == 1) {
@@ -109,7 +111,7 @@ if (isset($_POST['simpan'])) {
                         <input type="text" class="form-control" value="<?php echo $nopasien ?>" readonly>
                         <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
                         <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
-                        <input type="text" class="form-control" value="D-001" readonly hidden>
+                        <input type="text" class="form-control" name="diagnosa" value="D-001" readonly hidden>
                         <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
                         <div class=" d-flex">
                             <div class="form-group col-6">
@@ -149,7 +151,8 @@ if (isset($_POST['simpan'])) {
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Pilih</option>
                                 <?php foreach ($penyebab1 as $g) : ?>
-                                <option value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?></option>
+                                <option name="penyebab" value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
