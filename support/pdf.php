@@ -14,8 +14,17 @@ foreach ($det as $nama) {
     $keluhan = $nama['keluhan'];
 }
 
-$gejala = "SELECT tb_gejala.ket_gejala FROM tb_detail JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala WHERE tb_detail.id_pasien = '$nopasien'";
-$gejala1 = mysqli_query($koneksi, $gejala);
+$gejala_smy = "SELECT tb_gejala.ket_gejala, tb_gejala.kd_jen_gejala FROM tb_detail JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_jenis_gejala ON tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_detail.id_pasien = '$nopasien' AND tb_jenis_gejala.kd_jen_gejala = 'SMY-001'";
+$gejala1 = mysqli_query($koneksi, $gejala_smy);
+
+$gejala_omy = "SELECT tb_gejala.ket_gejala, tb_gejala.kd_jen_gejala FROM tb_detail JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_jenis_gejala ON tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_detail.id_pasien = '$nopasien' AND tb_jenis_gejala.kd_jen_gejala = 'OMY-002'";
+$gejala2 = mysqli_query($koneksi, $gejala_omy);
+
+$gejala_smn = "SELECT tb_gejala.ket_gejala, tb_gejala.kd_jen_gejala FROM tb_detail JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_jenis_gejala ON tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_detail.id_pasien = '$nopasien' AND tb_jenis_gejala.kd_jen_gejala = 'SMN-003'";
+$gejala3 = mysqli_query($koneksi, $gejala_smn);
+
+$gejala_omn = "SELECT tb_gejala.ket_gejala, tb_gejala.kd_jen_gejala FROM tb_detail JOIN tb_gejala ON tb_detail.kd_gejala = tb_gejala.kd_gejala JOIN tb_jenis_gejala ON tb_gejala.kd_jen_gejala = tb_jenis_gejala.kd_jen_gejala WHERE tb_detail.id_pasien = '$nopasien' AND tb_jenis_gejala.kd_jen_gejala = 'OMN-004'";
+$gejala4 = mysqli_query($koneksi, $gejala_omn);
 
 $diagnosa = "SELECT tb_diagnosa.definisi FROM tb_detail JOIN tb_diagnosa ON tb_detail.kd_diagnosa = tb_diagnosa.kd_diagnosa WHERE tb_detail.id_pasien = '$nopasien'";
 $diagnosa1 = mysqli_query($koneksi, $diagnosa);
@@ -72,13 +81,42 @@ $pdf->Cell(0, 10, '', 0, 1);
 
 // Gejala
 $pdf->SetFont('Times', 'B', 10);
-$pdf->Cell(7, 6, 'NO', 1, 0, 'C');
-$pdf->Cell(0, 6, 'GEJALA', 1, 1, 'C');
+$pdf->Cell(0, 6, 'DATA', 1, 1, 'C');
+
+$pdf->Cell(0, 8, '', 0, 1);
+
+$pdf->Cell(0, 6, 'DATA MAYOR', 0, 1);
+$pdf->Cell(0, 6, 'SUBJEKTIF', 1, 1);
+
 $pdf->SetFont('Times', '', 10);
-$no = 1;
-foreach ($gejala1 as $gejla_tampil) {
-    $pdf->Cell(7, 6, $no++, 1, 0);
-    $pdf->Cell(0, 6, $gejla_tampil['ket_gejala'], 1, 1);
+foreach ($gejala1 as $gejla_tampil1) {
+    $pdf->Cell(100, 6, $gejla_tampil1['ket_gejala'], 0, 1);
+}
+$pdf->Cell(0, 5, '', 0, 1);
+$pdf->SetFont('Times', 'B', 10);
+$pdf->Cell(0, 6, 'OBJEKTIF', 1, 1);
+$pdf->SetFont('Times', '', 10);
+foreach ($gejala2 as $gejla_tampil2) {
+    $pdf->Cell(100, 6, $gejla_tampil2['ket_gejala'], 0, 1);
+}
+
+$pdf->Cell(0, 10, '', 0, 1);
+
+$pdf->SetFont('Times', 'B', 10);
+$pdf->Cell(0, 6, 'DATA MINOR', 0, 1);
+$pdf->Cell(0, 6, 'SUBJEKTIF', 1, 1);
+
+$pdf->SetFont('Times', '', 10);
+foreach ($gejala3 as $gejla_tampil3) {
+    $pdf->Cell(100, 6, $gejla_tampil3['ket_gejala'], 0, 1);
+}
+
+$pdf->Cell(0, 5, '', 0, 1);
+$pdf->SetFont('Times', 'B', 10);
+$pdf->Cell(0, 6, 'OBJEKTIF', 1, 1);
+$pdf->SetFont('Times', '', 10);
+foreach ($gejala4 as $gejla_tampil4) {
+    $pdf->Cell(100, 6, $gejla_tampil4['ket_gejala'], 0, 1);
 }
 
 $pdf->Cell(0, 10, '', 0, 1);
@@ -94,12 +132,12 @@ $pdf->Cell(7, 6, $nod++, 1, 0);
 $pdf->Cell(75, 6, $diagnosa12, 1, 0);
 $pdf->Cell(75, 6, $penyebab12, 1, 1);
 
-// Penyebab
-// $pdf->SetFont('Times', 'B', 10);
-
-// $pdf->SetFont('Times', '', 10);
-// $nop = 1;
-// $pdf->Cell(5, 6, $nop++, 1, 0);
-
+$pdf->Cell(0, 10, '', 0, 1);
+// diagnosa
+$nodi = 1;
+$pdf->Cell(7, 6, $nodi++, 0, 0);
+$pdf->Cell(73, 6, $diagnosa12, 0, 0);
+$pdf->Cell(25, 6, 'berdasarkan', 0, 0);
+$pdf->Cell(5, 6, $penyebab12, 0, 1);
 
 $pdf->Output();
