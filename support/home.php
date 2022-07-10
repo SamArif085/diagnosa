@@ -20,8 +20,10 @@
         </div>
         <br>
         <center>
-            <div class="card card-body col-6 border border-danger bg-success">
-                <h1 class=" text-light">Kelompok 3 </h1>
+            <div class="card text-light card-body col-6 border border-danger bg-success">
+                <h2>SISTEM INFORMASI DIAGNOSA KEPERAWATAN (SIDIK)</h2>
+                <h3 class="pt-4">KELOMPOK 3 </h3>
+            </div>
         </center>
     </div>
 </div>
