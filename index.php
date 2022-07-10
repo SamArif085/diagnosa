@@ -70,11 +70,11 @@
                     case 'data':
                         include "tables/datatables.php";
                         break;
-                    case 'diagnosa':
-                        include "support/diagnosa.php";
-                        break;
                     case 'about':
                         include "support/about.php";
+                        break;
+                    default:
+                        echo 'Halaman Web Tidak Ada';
                         break;
                 }
             } else {
