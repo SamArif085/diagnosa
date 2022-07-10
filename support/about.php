@@ -2,7 +2,7 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="img/2.jpg" class="d-block w-100" alt="...">
+                <img src="img/1.jpg" class="d-block w-100" alt="...">
             </div>
         </div>
         <div class="card">
@@ -16,7 +16,7 @@
                         Diagnosa Keperawatan Indonesia (SDKI)</b>
                 </h4>
                 </p>
-                <div>
+                <!-- <div>
                     <div class="text-center">
                         <h3>Kelompok 3</h3>
                     </div>
@@ -35,8 +35,9 @@
                             <div> 9. Dwi Norawati (2112057)</div>
                         </div>
                     </div>
-                </div>
-                <br>
+                </div> -->
+
+                <br><br><br><br>
                 <h4 class=" text-center">Program Alih Jenjang Pendidikan Ners STIKes Patria Husada Blitar</h4>
             </div>
         </div>
