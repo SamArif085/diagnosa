@@ -81,13 +81,14 @@
                 include "support/home.php";
             }
             ?>
-            <!-- FOOTER -->
-            <footer class="fixed-bottom m-2">
-                <p class="float-end"><a href="#">Back to top</a></p>
-                <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-            </footer>
         </div>
     </main>
+    <footer class="bg-light mt-auto py-3 m-2 text-center">
+        <!-- <p class="float-end"><a href="#">Back to top</a></p> -->
+        <div class="container">
+            <span> (KELOMPOK 3) &copy; 2022</span>
+        </div>
+    </footer>
 
 
     <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->

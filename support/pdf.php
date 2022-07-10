@@ -3,8 +3,8 @@ require '../koneksi/koneksi.php';
 require('../fpdf184/fpdf.php');
 $nopasien = $_GET['no_dmk_pasien'];
 
-$pasien = ("SELECT * FROM tb_pasien WHERE no_dmk_pasien = '$nopasien'");
-$det = mysqli_query($koneksi, $pasien);
+$pasi = ("SELECT * FROM tb_pasien WHERE no_dmk_pasien = '$nopasien'");
+$det = mysqli_query($koneksi, $pasi);
 foreach ($det as $nama) {
     $namapas = $nama['nama_pasien'];
     $nodmkpas = $nama['no_dmk_pasien'];
@@ -41,59 +41,65 @@ $pdf->Cell(10, 7, '', 0, 1);
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(30, 6, 'NO DMK', 1, 0, 'L');
 $pdf->SetFont('Times', '', 10);
-$pdf->Cell(125, 6, $nodmkpas, 1, 1);
+$pdf->Cell(0, 6, $nodmkpas, 1, 1);
 
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(30, 6, 'NAMA PASIEN', 1, 0, 'L');
 $pdf->SetFont('Times', '', 10);
-$pdf->Cell(125, 6, $namapas, 1, 1);
+$pdf->Cell(0, 6, $namapas, 1, 1);
 
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(30, 6, 'JENIS KELAMIN', 1, 0, 'L');
 $pdf->SetFont('Times', '', 10);
-$pdf->Cell(125, 6, $jk, 1, 1);
+$pdf->Cell(0, 6, $jk, 1, 1);
 
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(30, 6, 'ALAMAT', 1, 0, 'L');
 $pdf->SetFont('Times', '', 10);
-$pdf->Cell(125, 6, $alamat, 1, 1);
+$pdf->Cell(0, 6, $alamat, 1, 1);
 
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(30, 6, 'DX MED', 1, 0, 'L');
 $pdf->SetFont('Times', '', 10);
-$pdf->Cell(125, 6, $dx, 1, 1);
+$pdf->Cell(0, 6, $dx, 1, 1);
 
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(30, 6, 'KELUHAN', 1, 0, 'L');
 $pdf->SetFont('Times', '', 10);
-$pdf->Cell(125, 6, $keluhan, 1, 1);
+$pdf->Cell(0, 6, $keluhan, 1, 1);
 
 $pdf->Cell(0, 10, '', 0, 1);
 
 // Gejala
 $pdf->SetFont('Times', 'B', 10);
+$pdf->Cell(7, 6, 'NO', 1, 0, 'C');
 $pdf->Cell(0, 6, 'GEJALA', 1, 1, 'C');
 $pdf->SetFont('Times', '', 10);
 $no = 1;
 foreach ($gejala1 as $gejla_tampil) {
-    $pdf->Cell(5, 6, $no++, 1, 0);
+    $pdf->Cell(7, 6, $no++, 1, 0);
     $pdf->Cell(0, 6, $gejla_tampil['ket_gejala'], 1, 1);
 }
 
-// Diagnosa
+$pdf->Cell(0, 10, '', 0, 1);
+
+// Diagnosa dan Penyebab
 $pdf->SetFont('Times', 'B', 10);
-$pdf->Cell(0, 6, 'DIAGNOSA', 1, 1, 'C');
+$pdf->Cell(7, 6, 'NO', 1, 0, 'C');
+$pdf->Cell(75, 6, 'DIAGNOSA', 1, 0, 'C');
+$pdf->Cell(75, 6, 'PENYEBAB', 1, 1, 'C');
 $pdf->SetFont('Times', '', 10);
 $nod = 1;
-$pdf->Cell(5, 6, $nod++, 1, 0);
-$pdf->Cell(0, 6, $diagnosa12, 1, 1);
+$pdf->Cell(7, 6, $nod++, 1, 0);
+$pdf->Cell(75, 6, $diagnosa12, 1, 0);
+$pdf->Cell(75, 6, $penyebab12, 1, 1);
 
 // Penyebab
-$pdf->SetFont('Times', 'B', 10);
-$pdf->Cell(0, 6, 'PENYEBAB', 1, 1, 'C');
-$pdf->SetFont('Times', '', 10);
-$nop = 1;
-$pdf->Cell(5, 6, $nop++, 1, 0);
-$pdf->Cell(0, 6, $penyebab12, 1, 0);
+// $pdf->SetFont('Times', 'B', 10);
+
+// $pdf->SetFont('Times', '', 10);
+// $nop = 1;
+// $pdf->Cell(5, 6, $nop++, 1, 0);
+
 
 $pdf->Output();

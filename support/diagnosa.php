@@ -95,8 +95,7 @@ if (isset($_POST['simpan'])) {
             <div class="card card-body">
                 <div class="container-fluid mb-3 mt-4 ">
                     <h2>Diagnosa</h2>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target='#diagnosa1<?php echo $nopasien ?> '>Bersihan
-                        Jalan Nafas Tidak Efektif</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target='#diagnosa1<?php echo $nopasien ?> '>Bersihan Jalan Nafas Tidak Efektif</button>
                     <!-- Modal -->
                     <div class="modal fade" id='diagnosa1<?php echo $nopasien ?>' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -106,8 +105,8 @@ if (isset($_POST['simpan'])) {
                                         Jalan Nafas Tidak Efektif</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <form method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
+                                    <div class="modal-body">
                                         <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
                                         <input type="text" class="form-control" name="id_pasien" value="<?php echo $nopasien ?>" readonly>
                                         <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
@@ -157,11 +156,11 @@ if (isset($_POST['simpan'])) {
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
-                                </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -176,13 +175,13 @@ if (isset($_POST['simpan'])) {
                                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <form method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
+                                    <div class="modal-body">
                                         <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                                        <input type="text" class="form-control" value="<?php echo $nopasien ?>" readonly>
+                                        <input type="text" class="form-control" name="id_pasien" value="<?php echo $nopasien ?>" readonly>
                                         <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
                                         <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
-                                        <input type="text" class="form-control" value="D-002" readonly hidden>
+                                        <input type="text" class="form-control" name="diagnosa" value="D-002" readonly hidden>
                                         <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
                                         <div class="d-flex ">
                                             <br>
@@ -221,7 +220,7 @@ if (isset($_POST['simpan'])) {
                                         </div>
                                         <div class="">
                                             <label for="exampleInputEmail1" class="form-label">Penyebab</label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" name="pen" aria-label="Default select example">
                                                 <option selected>Pilih</option>
                                                 <?php foreach ($penyebab2 as $g) : ?>
                                                     <option value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
@@ -229,11 +228,11 @@ if (isset($_POST['simpan'])) {
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
-                                </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -247,13 +246,13 @@ if (isset($_POST['simpan'])) {
                                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <form method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
+                                    <div class="modal-body">
                                         <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
-                                        <input type="text" class="form-control" value="<?php echo $nopasien ?>" readonly>
+                                        <input type="text" class="form-control" name="id_pasien" value="<?php echo $nopasien ?>" readonly>
                                         <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
                                         <input type="text" class="form-control" value="<?php echo $namapas ?>" readonly>
-                                        <input type="text" class="form-control" value="D-003" readonly hidden>
+                                        <input type="text" class="form-control" name="diagnosa" value="D-003" readonly hidden>
                                         <label for="exampleInputEmail1" class="form-label">Gejala Mayor</label>
                                         <div class="d-flex ">
                                             <br>
@@ -292,7 +291,7 @@ if (isset($_POST['simpan'])) {
                                         </div>
                                         <div class="">
                                             <label for="exampleInputEmail1" class="form-label">Penyebab</label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" name="pen" aria-label="Default select example">
                                                 <option selected>Pilih</option>
                                                 <?php foreach ($penyebab3 as $g) : ?>
                                                     <option value="<?= $g["kd_penyebab"]; ?>"><?= $g["ket_penyebab"]; ?>
@@ -300,11 +299,11 @@ if (isset($_POST['simpan'])) {
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
-                                </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

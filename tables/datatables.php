@@ -147,7 +147,7 @@ if (isset($_POST['edit'])) {
                                                                 <h5 class="modal-title" id="exampleModalLabel">
                                                                     Edit&nbsp;<?php echo $datarow['nama_pasien']; ?>
                                                                 </h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form method="POST" enctype="multipart/form-data">
@@ -186,7 +186,7 @@ if (isset($_POST['edit'])) {
                                                                     </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
                                                                 <button type="submit" name="edit" class="btn btn-success">Simpan</button>
                                                             </div>
                                                             </form>
@@ -206,13 +206,12 @@ if (isset($_POST['edit'])) {
                                                             <div class="modal-body">
                                                                 <form method="POST" enctype="multipart/form-data">
                                                                     <input type="hidden" name="id_pasien" value="<?= $datarow["no_dmk_pasien"]; ?>">
-                                                                    <div class=" text-danger">Anda yakin menghapus
-                                                                        Pasien : &nbsp;<?= $datarow["no_dmk_pasien"]; ?>
+                                                                    <div class=" text-danger">Anda yakin menghapus Pasien : &nbsp;<?= $datarow["no_dmk_pasien"]; ?>
                                                                     </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" name="hapus" class="btn btn-success">Simpan</button>
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tidak</button>
+                                                                <button type="submit" name="hapus" class="btn btn-success">Iya</button>
                                                             </div>
                                                             </form>
                                                         </div>
