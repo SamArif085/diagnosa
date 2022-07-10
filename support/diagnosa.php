@@ -122,6 +122,11 @@ if (isset($_POST['simpan'])) {
                                 </div>
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
+                                        <div>
+                                            <label for="exampleInputEmail1" class="form-label">Definisi</label>
+                                            <h6>Ketidakmampuan membersihkan sekret atau obstruki jalan napas untuk
+                                                mempertahankan jalan napas tetap paten</h6>
+                                        </div>
                                         <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
                                         <input type="text" class="form-control" name="id_pasien"
                                             value="<?php echo $nopasien ?>" readonly>
@@ -193,12 +198,17 @@ if (isset($_POST['simpan'])) {
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Pola Napaas Tidak Efektif</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
+                                        <div>
+                                            <label for="exampleInputEmail1" class="form-label">Definisi</label>
+                                            <h6>Inspirasi dan/atau ekspirasi yang tidak memberikan ventilasi adekuat
+                                            </h6>
+                                        </div>
                                         <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
                                         <input type="text" class="form-control" name="id_pasien"
                                             value="<?php echo $nopasien ?>" readonly>
@@ -287,6 +297,11 @@ if (isset($_POST['simpan'])) {
                                 </div>
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
+                                        <div>
+                                            <label for="exampleInputEmail1" class="form-label">Definisi</label>
+                                            <h6>Pengeluaran fases yang sering, lunak dan tidak berbentuk
+                                            </h6>
+                                        </div>
                                         <label for="exampleInputEmail1" class="form-label">Nomor Pasien</label>
                                         <input type="text" class="form-control" name="id_pasien"
                                             value="<?php echo $nopasien ?>" readonly>
