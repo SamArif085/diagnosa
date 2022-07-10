@@ -86,7 +86,7 @@ $pdf->Cell(0, 6, 'DATA', 1, 1, 'C');
 $pdf->Cell(0, 8, '', 0, 1);
 
 $pdf->Cell(0, 6, 'DATA MAYOR', 0, 1);
-$pdf->Cell(0, 6, 'SUBJEKTIF', 1, 1);
+$pdf->Cell(0, 6, 'SUBJEKTIF', 0, 1);
 
 $pdf->SetFont('Times', '', 10);
 foreach ($gejala1 as $gejla_tampil1) {
@@ -94,7 +94,7 @@ foreach ($gejala1 as $gejla_tampil1) {
 }
 $pdf->Cell(0, 5, '', 0, 1);
 $pdf->SetFont('Times', 'B', 10);
-$pdf->Cell(0, 6, 'OBJEKTIF', 1, 1);
+$pdf->Cell(0, 6, 'OBJEKTIF', 0, 1);
 $pdf->SetFont('Times', '', 10);
 foreach ($gejala2 as $gejla_tampil2) {
     $pdf->Cell(100, 6, $gejla_tampil2['ket_gejala'], 0, 1);
@@ -104,7 +104,7 @@ $pdf->Cell(0, 10, '', 0, 1);
 
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(0, 6, 'DATA MINOR', 0, 1);
-$pdf->Cell(0, 6, 'SUBJEKTIF', 1, 1);
+$pdf->Cell(0, 6, 'SUBJEKTIF', 0, 1);
 
 $pdf->SetFont('Times', '', 10);
 foreach ($gejala3 as $gejla_tampil3) {
@@ -113,7 +113,7 @@ foreach ($gejala3 as $gejla_tampil3) {
 
 $pdf->Cell(0, 5, '', 0, 1);
 $pdf->SetFont('Times', 'B', 10);
-$pdf->Cell(0, 6, 'OBJEKTIF', 1, 1);
+$pdf->Cell(0, 6, 'OBJEKTIF', 0, 1);
 $pdf->SetFont('Times', '', 10);
 foreach ($gejala4 as $gejla_tampil4) {
     $pdf->Cell(100, 6, $gejla_tampil4['ket_gejala'], 0, 1);
@@ -137,7 +137,7 @@ $pdf->Cell(0, 10, '', 0, 1);
 $nodi = 1;
 $pdf->Cell(7, 6, $nodi++, 0, 0);
 $pdf->Cell(73, 6, $diagnosa12, 0, 0);
-$pdf->Cell(25, 6, 'berdasarkan', 0, 0);
+$pdf->Cell(15, 6, 'b.d', 0, 0);
 $pdf->Cell(5, 6, $penyebab12, 0, 1);
 
 $pdf->Output();
