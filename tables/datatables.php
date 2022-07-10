@@ -104,11 +104,11 @@ if (isset($_POST['edit'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Data Pasien</h4>
-                        <button class=" mb-2 btn btn-danger bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#tambah"> Tambah Pasien</button>
+                        <button class="btn btn-success bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#tambah"> Tambah Pasien</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="datatable" class="display table table-hover">
+                            <table id="datatable" class="display table table-hover table-bordered">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -235,6 +235,7 @@ if (isset($_POST['edit'])) {
                 <!-- modal header -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Pasien</h5>
+                    <button type="button" class="btn btn-danger bi bi-x-lg" data-bs-dismiss="modal"></button>
                 </div>
                 <!-- modal body -->
                 <div class="modal-body">
@@ -272,7 +273,7 @@ if (isset($_POST['edit'])) {
                             <input type="date" class="form-control" name="tgl" id="tgl">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> -->
                             <button type="submit" name="btn-save" class="btn btn-success">Simpan</button>
                         </div>
                     </form>

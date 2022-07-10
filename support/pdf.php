@@ -86,13 +86,13 @@ $pdf->Cell(0, 10, '', 0, 1);
 // Diagnosa dan Penyebab
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(7, 6, 'NO', 1, 0, 'C');
-$pdf->Cell(75, 6, 'DIAGNOSA', 1, 0, 'C');
-$pdf->Cell(75, 6, 'PENYEBAB', 1, 1, 'C');
+$pdf->Cell(91.5, 6, 'DIAGNOSA', 1, 0, 'C');
+$pdf->Cell(91.5, 6, 'PENYEBAB', 1, 1, 'C');
 $pdf->SetFont('Times', '', 10);
 $nod = 1;
 $pdf->Cell(7, 6, $nod++, 1, 0);
-$pdf->Cell(75, 6, $diagnosa12, 1, 0);
-$pdf->Cell(75, 6, $penyebab12, 1, 1);
+$pdf->Cell(91.5, 6, $diagnosa12, 1, 0);
+$pdf->Cell(91.5, 6, $penyebab12, 1, 1);
 
 // Penyebab
 // $pdf->SetFont('Times', 'B', 10);
