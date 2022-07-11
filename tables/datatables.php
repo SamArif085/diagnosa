@@ -117,6 +117,7 @@ if (isset($_POST['edit'])) {
                                         <th>Nama Pasien</th>
                                         <th>Alamat Pasien</th>
                                         <th>Jenis Kelamin</th>
+                                        <th>Usia</th>
                                         <th>DX MED</th>
                                         <th>Keluhan</th>
                                         <th>Tanggal</th>
@@ -133,6 +134,7 @@ if (isset($_POST['edit'])) {
                                         <td><?php echo $datarow['nama_pasien']; ?></td>
                                         <td><?php echo $datarow['alamat_pasien']; ?></td>
                                         <td><?php echo $datarow['jen_kel_pasien']; ?></td>
+                                        <td><?php echo $datarow['usia']; ?></td>
                                         <td><?php echo $datarow['dx_med']; ?></td>
                                         <td><?php echo $datarow['keluhan']; ?></td>
                                         <td><?php echo $datarow['tanggal']; ?></td>
@@ -184,6 +186,11 @@ if (isset($_POST['edit'])) {
                                                                         <option value="L">Laki - Laki</option>
                                                                         <option value="P">Perempuan</option>
                                                                     </select>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="usia" class="form-label">Usia</label>
+                                                                    <input type="text" class="form-control" name="usia"
+                                                                        value="<?= $datarow["usia"]; ?>" id="usia">
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="alamat"
