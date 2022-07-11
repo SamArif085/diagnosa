@@ -65,6 +65,7 @@ if (isset($_POST['edit'])) {
     $namaid = htmlspecialchars($_POST['id_pass']);
     $nama = htmlspecialchars($_POST['nama']);
     $jk = htmlspecialchars($_POST['jk']);
+    $usia = htmlspecialchars($_POST['usia']);
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
@@ -75,6 +76,7 @@ if (isset($_POST['edit'])) {
             nama_pasien ='$nama',
             alamat_pasien ='$alamat',
             jen_kel_pasien = '$jk',
+            usia = '$usia',
             dx_med = '$dx',
             keluhan = '$keluhan',
             tanggal = '$tgl'
