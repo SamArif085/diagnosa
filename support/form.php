@@ -8,7 +8,7 @@ if (isset($_POST['btn-save'])) {
     $id_pas = htmlspecialchars($_POST['id_pas']);
     $nama = htmlspecialchars($_POST['nama']);
     $jk = htmlspecialchars($_POST['jk']);
-    $usia = htmlspecialchars($_POST['usia']);
+   
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
@@ -65,10 +65,7 @@ if (isset($_POST['btn-save'])) {
                     <option value="P">Perempuan</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="usia" class="form-label">Usia</label>
-                <input type="text" class="form-control" name="usia" id="usia">
-            </div>
+
             <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
                 <input type="text" class="form-control" name="alamat" id="alamat">

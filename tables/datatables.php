@@ -5,16 +5,20 @@ $pasien = 'SELECT * FROM tb_pasien';
 $det = mysqli_query($koneksi, $pasien);
 
 if (isset($_POST['btn-save'])) {
+
     global $koneksi;
     $id_pas = htmlspecialchars($_POST['id_pas']);
     $nama = htmlspecialchars($_POST['nama']);
     $jk = htmlspecialchars($_POST['jk']);
+    $usia = htmlspecialchars($_POST['usia']);
     $alamat = htmlspecialchars($_POST['alamat']);
     $dx = htmlspecialchars($_POST['dx']);
     $keluhan = htmlspecialchars($_POST['keluhan']);
     $tgl = htmlspecialchars($_POST['tgl']);
 
-    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, dx_med, keluhan, tanggal) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$dx', '$keluhan', '$tgl')";
+    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, usia, dx_med, keluhan) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$usia', '$dx', '$keluhan')";
+    //     var_dump($query);
+    // die;
     $query_run = mysqli_query($koneksi, $query);
     if ($query_run == 1) {
         echo "
@@ -305,6 +309,10 @@ if (isset($_POST['edit'])) {
                                 <option value="L">Laki - Laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="usia" class="form-label">Usia</label>
+                            <input type="text" class="form-control" name="usia" id="usia">
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat</label>
