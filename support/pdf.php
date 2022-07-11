@@ -124,13 +124,13 @@ $pdf->Cell(0, 10, '', 0, 1);
 // Diagnosa dan Penyebab
 $pdf->SetFont('Times', 'B', 10);
 $pdf->Cell(7, 6, 'NO', 1, 0, 'C');
-$pdf->Cell(75, 6, 'DIAGNOSA', 1, 0, 'C');
-$pdf->Cell(75, 6, 'PENYEBAB', 1, 1, 'C');
+$pdf->Cell(75, 6, 'MASALAH', 1, 0, 'C');
+$pdf->Cell(0, 6, 'PENYEBAB', 1, 1, 'C');
 $pdf->SetFont('Times', '', 10);
 $nod = 1;
-$pdf->Cell(7, 6, $nod++, 1, 0);
-$pdf->Cell(75, 6, $diagnosa12, 1, 0);
-$pdf->Cell(75, 6, $penyebab12, 1, 1);
+$pdf->Cell(7, 6, $nod++, 0, 0);
+$pdf->Cell(75, 6, $diagnosa12, 0, 0);
+$pdf->MultiCell(0, 6, $penyebab12, 0, 1);
 
 $pdf->Cell(0, 10, '', 0, 1);
 // diagnosa
@@ -138,6 +138,6 @@ $nodi = 1;
 $pdf->Cell(7, 6, $nodi++, 0, 0);
 $pdf->Cell(73, 6, $diagnosa12, 0, 0);
 $pdf->Cell(15, 6, 'b.d', 0, 0);
-$pdf->Cell(5, 6, $penyebab12, 0, 1);
+$pdf->MultiCell(0, 6, $penyebab12, 0, 1);
 
 $pdf->Output();
