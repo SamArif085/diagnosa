@@ -16,7 +16,7 @@ if (isset($_POST['btn-save'])) {
     $keluhan = htmlspecialchars($_POST['keluhan']);
     $tgl = htmlspecialchars($_POST['tgl']);
 
-    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, usia, dx_med, keluhan) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$usia', '$dx', '$keluhan')";
+    $query = "INSERT INTO tb_pasien (no_dmk_pasien, nama_pasien, alamat_pasien, jen_kel_pasien, usia, dx_med, keluhan , tanggal) VALUES ('$id_pas','$nama', '$alamat', '$jk', '$usia', '$dx', '$keluhan' , '$tgl')";
     //     var_dump($query);
     // die;
     $query_run = mysqli_query($koneksi, $query);
