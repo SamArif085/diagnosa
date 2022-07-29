@@ -18,7 +18,6 @@
         <center>
             <div class="card text-light card-body col-6 border border-danger bg-success">
                 <h2>SISTEM INFORMASI DIAGNOSA KEPERAWATAN (SIDIK)</h2>
-                <h3 class="pt-4">KELOMPOK 3 </h3>
             </div>
         </center>
     </div>
