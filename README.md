@@ -7,6 +7,6 @@
     </a>
 </div>
 
-<h4>Aplikasi sederhana membuat diagnosa pasien CRUD dengan menggunakan php dan javascript.</h4>
+<h4>Aplikasi sederhana membuat diagnosa pasien CRUD dengan menggunakan php native dan javascript.</h4>
 - untuk tampilan menggunakan boostrap 5. <br>
 - untuk database menggunakan sql.
