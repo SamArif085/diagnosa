@@ -88,7 +88,9 @@
     <footer class="bg-success mt-auto py-3 m-2 text-center fixed-bottom">
         <!-- <p class="float-end"><a href="#">Back to top</a></p> -->
         <div class="container text-light">
-            <span> Copyright &copy;2022 - Samarif085 & YASA1102.</span>
+            <span> Copyright &copy;2022 - <a href="https://github.com/SamArif085">Samarif085</a> & <a
+                    href="https://github.com/YASA1102">YASA1102</a>
+                < /span>
         </div>
     </footer>
 
